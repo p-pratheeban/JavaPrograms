@@ -14,16 +14,7 @@ class Factorial {
 		return fact;
 	}
 
-	public static long factorial(int n) {
-		if (n < 0)
-			throw new IllegalArgumentException("n must be >= 0");
-		if (n == 0 || n == 1) {
-			return 1;
-		} else {
-			return n * factorial(n - 1);
-		}
-	}
-
+	
 	public static BigInteger factor(int n) {
 		BigInteger fact = new BigInteger("1");
 		for (int i = 1; i <= n; i++)
@@ -38,11 +29,7 @@ class Factorial {
 		System.out.println(calculateFactorial(26));
 		// System.out.println(calculateFactorial(-5));
 
-		System.out.println(factorial(0));
-		System.out.println(factorial(6));
-		System.out.println(factorial(25));
-		System.out.println(factorial(26));
-
+	
 		System.out.println(factor(632));
 		System.out.println(factor(1224));
 	}
