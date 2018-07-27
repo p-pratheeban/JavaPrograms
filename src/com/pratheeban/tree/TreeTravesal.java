@@ -138,7 +138,47 @@ public class TreeTravesal {
 			}
 		}
 	}
+	static void postOder(BinaryTreeNode root) {
+		Stack<BinaryTreeNode> s1 = new Stack<>();
+		Stack<BinaryTreeNode> s2 = new Stack<>();
+		s1.push(root);
+		while(!s1.isEmpty()) {
+			BinaryTreeNode node = s1.pop();
+			s2.push(node);
+			if(node.left!=null) {
+				s1.push(node.left);
+			}
+			if(node.right!=null) {
+				s1.push(node.right);
+			}
+		}
+		while(!s2.isEmpty()) {
+			System.out.print(s2.pop().data + "\t");
+		}
+	}
+	static void postoder(BinaryTreeNode root) {
+		BinaryTreeNode current = root;
+		Stack<BinaryTreeNode> stack = new Stack<>();
+		while(current!=null || !stack.isEmpty()) {
+			if(current!=null) {
+				stack.push(current);
+				current = current.left;
+			}else {
+				BinaryTreeNode temp = stack.peek().right;
+				if(temp!=null) {
+					current = temp;
+				}else {
+					temp = stack.pop();
+					System.out.print(temp.data+"\t");
 
+					while(!stack.isEmpty() && temp == stack.peek().right) {
+						temp = stack.pop();
+						System.out.print(temp.data+"\t");
+					}
+				}
+			}
+		}
+	}
 	// Prints level order traversal line
 	// by line using two queues.
 	static void levelOrder(BinaryTreeNode root) {
@@ -180,7 +220,12 @@ public class TreeTravesal {
 		}
 	}
 	public static void main(String[] args) {
-		BinaryTreeNode b = BinaryTreeNode.createBinaryTree();
-		levelOrder(b);
+		System.out.println("Level Oder");
+		BinaryTreeNode root = BinaryTreeNode.createBinaryTree();
+		levelOrder(root);
+		System.out.println("\nPost Oder");
+		postOder(root);
+		System.out.println();
+		postoder(root);
 	}
 }
