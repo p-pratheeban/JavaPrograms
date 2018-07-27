@@ -2,12 +2,12 @@ package com.pratheeban.linkedlist.example;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.pratheeban.linkedlist.LinkedList;
 import com.pratheeban.linkedlist.ListNode;
 
 public class RemoveDup {
@@ -73,7 +73,7 @@ public class RemoveDup {
 	}
 
 	public static void main(String[] args) {
-		List<Integer> l = new LinkedList<>();
+		/*List<Integer> l = new LinkedList<>();
 		l.add(23);
 		l.add(22);
 		l.add(23);
@@ -89,12 +89,12 @@ public class RemoveDup {
 		l1.remove(new Integer(23));
 		List<Integer> l2 = new CopyOnWriteArrayList<>(l);
 		List<Integer> l3 = new CopyOnWriteArrayList<>(l1);
-
+*/
 		// System.out.println(removeDup(l));
 		// System.out.println(removeDup1(l1));
-		System.out.println(l1);
-		System.out.println(removeDup(l2));
-		System.out.println(removeDup1(l3));
+	//	System.out.println(l1);
+	//	System.out.println(removeDup(l2));
+	//	System.out.println(removeDup1(l3));
 		ListNode s = new ListNode(23);
 		ListNode s11 = new ListNode(24);
 		ListNode s3 = new ListNode(23);
@@ -110,6 +110,17 @@ public class RemoveDup {
 			System.out.print(s1.data + " ");
 			s1 = s1.next;
 		}
+		LinkedList list = new LinkedList();
+		ListNode head=new ListNode(5);
+		list.inserAtLast(head);
+		list.inserAtLast(new ListNode(6));
+		list.inserAtLast(new ListNode(7));
+		list.inserAtLast(new ListNode(6));
+		list.inserAtLast(new ListNode(2));
+		System.out.println(list.printList(head));
+		ListNode s2 = removeDuplicate1(head);
+		System.out.println(list.printList(s2));
+
 
 	}
 }

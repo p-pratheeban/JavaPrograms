@@ -1,5 +1,7 @@
 package com.pratheeban.linkedlist;
 
+import javax.xml.ws.FaultAction;
+
 public class LinkedList {
 
 	private int length;
@@ -135,6 +137,7 @@ public class LinkedList {
 			node = node.getNext();
 		}
 	}
+
 	// Return a string representation of this collection, in the form
 	public String toString() {
 		String result = "[";
@@ -148,6 +151,51 @@ public class LinkedList {
 			temp = temp.getNext();
 		}
 		return result + "]";
+	}
+
+	public String printList(ListNode head) {
+		String result = "[";
+		if (head == null) {
+			return result + "]";
+		}
+		result = result + head.getData();
+		ListNode temp = head.getNext();
+		while (temp != null) {
+			result = result + "," + temp.getData();
+			temp = temp.getNext();
+		}
+		return result + "]";
+	}
+//[15,6,16,7,1,2]
+
+	public boolean ifLoopExist() {
+		ListNode fastPtr = head;
+		ListNode slowPtr = head;
+		while (fastPtr != null && fastPtr.next != null) {
+			fastPtr = fastPtr.next.next;
+			slowPtr = slowPtr.next;
+			if (slowPtr == fastPtr) {
+				return true;
+			} 
+		}
+		return false;
+	}
+
+	public ListNode nthFromLastNode(ListNode head, int n) {
+		ListNode firstPtr = head;
+		ListNode secondPtr = head;
+
+		for (int i = 0; i < n; i++) {
+			firstPtr = firstPtr.next;
+
+		}
+
+		while (firstPtr != null) {
+			firstPtr = firstPtr.next;
+			secondPtr = secondPtr.next;
+		}
+
+		return secondPtr;
 	}
 
 	// Find the position of the first value that is equal to a given value.
