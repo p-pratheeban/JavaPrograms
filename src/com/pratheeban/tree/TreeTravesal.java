@@ -219,6 +219,82 @@ public class TreeTravesal {
 			}
 		}
 	}
+	
+	public static void leveloder(BinaryTreeNode root) {
+		Queue<BinaryTreeNode> q1 = new LinkedList<>();
+		Queue<BinaryTreeNode> q2 = new LinkedList<>();
+		q1.add(root);
+		while(!q1.isEmpty()||!q2.isEmpty()) {
+			while(!q1.isEmpty()) {
+				BinaryTreeNode b1 = q1.poll();
+				System.out.print(b1.data+"\t");
+				if(b1.left!=null) {
+					q2.add(b1.left);
+				}
+				if(b1.right!=null){
+					q2.add(b1.right);
+				}
+			}
+			System.out.println();
+			while(!q2.isEmpty()) {
+				BinaryTreeNode b2 = q2.poll();
+				System.out.print(b2.data+"\t");
+				if(b2.left!=null) {
+					q1.add(b2.left);
+				}
+				if(b2.right!=null){
+					q1.add(b2.right);
+				}
+			}
+			System.out.println();
+			
+		}
+	}
+	
+	public static void levelOderTravesal(BinaryTreeNode root) {
+		Queue<BinaryTreeNode> q1 = new LinkedList<>();
+		q1.add(root);
+		int levelCount = 1;
+		int currentCount = 0;
+		while(!q1.isEmpty()) {
+			while(levelCount>0) {
+				BinaryTreeNode b1 = q1.poll();
+				System.out.print(b1.data+"\t");
+				if(b1.left!=null) {
+					q1.add(b1.left);
+					currentCount++;
+				}
+				if(b1.right!=null) {
+					q1.add(b1.right);
+					currentCount++;
+				}
+				levelCount--;			
+			}
+			System.out.println();
+			levelCount = currentCount;
+			currentCount = 0;
+		}
+	}
+	
+	public static void levelOderReversal(BinaryTreeNode root) {
+		Queue<BinaryTreeNode> q1 = new LinkedList<>();
+		q1.add(root);
+		Stack<BinaryTreeNode> s = new Stack<>();
+		while(!q1.isEmpty()) {
+			BinaryTreeNode b1= q1.poll();
+			if(b1.right!=null) {
+				q1.add(b1.right);
+			}
+			if(b1.left!=null) {
+				q1.add(b1.left);
+			}
+			s.push(b1);
+		}
+		while(!s.isEmpty()) {
+			System.out.print(s.pop().data+"\t");
+		}
+		System.out.println();
+	}
 	public static void main(String[] args) {
 		System.out.println("Level Oder");
 		BinaryTreeNode root = BinaryTreeNode.createBinaryTree();
@@ -227,5 +303,12 @@ public class TreeTravesal {
 		postOder(root);
 		System.out.println();
 		postoder(root);
+		System.out.println("\nlevel Oder");
+		leveloder(root);
+		System.out.println("\nlevel Oder");
+		levelOderTravesal(root);
+		System.out.println("\nReverse level Oder");
+		levelOderReversal(root);
+
 	}
 }
