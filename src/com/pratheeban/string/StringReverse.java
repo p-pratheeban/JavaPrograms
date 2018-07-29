@@ -1,4 +1,4 @@
-package com.pratheeban.string.examples;
+package com.pratheeban.string;
 
 public class StringReverse {
 	public static String reverseString(String input){

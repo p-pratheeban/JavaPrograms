@@ -1,4 +1,4 @@
-package com.pratheeban.string.examples;
+package com.pratheeban.string;
 
 import java.util.Arrays;
 
