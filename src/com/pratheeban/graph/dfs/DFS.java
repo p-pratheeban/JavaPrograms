@@ -31,26 +31,13 @@ class DFS {
 
 	} // end dfs
 
-	static void dfsrecursive(Graph g, Integer v) {
+	public void dfsrecursive(Graph g, int v) {
 		g.displayVertex(v);
 		g.vertexList[v].wasVisited = true;
-		while (g.getAdjUnvisitedVertex(v) != -1) {
-			dfsrecursive(g, g.getAdjUnvisitedVertex(v));
+		int v1;
+		while ((v1=g.getAdjUnvisitedVertex(v)) != -1) {
+			dfsrecursive(g, v1);
 		}
-	}
-
-	public Graph createGraph() {
-		Graph theGraph = new Graph();
-		theGraph.addVertex('A'); // 0 (start for dfs)
-		theGraph.addVertex('B'); // 1
-		theGraph.addVertex('C'); // 2
-		theGraph.addVertex('D'); // 3DFS
-		theGraph.addVertex('E'); // 4
-		theGraph.addEdge(0, 1); // AB
-		theGraph.addEdge(1, 2); // BC
-		theGraph.addEdge(0, 3); // AD
-		theGraph.addEdge(3, 4); // DE
-		return theGraph;
 	}
 
 	/*
@@ -58,7 +45,7 @@ class DFS {
 	 */
 	public static void main(String[] args) {
 		DFS d = new DFS();
-		Graph g = d.createGraph();
+		Graph g = Graph.createGraph();
 		System.out.print("Visits: ");
 		d.dfs(g); // depth-first search
 		System.out.println();
