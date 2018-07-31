@@ -1,4 +1,4 @@
-package com.pratheeban.linkedlist.example;
+package com.pratheeban.linkedlist.problems;
 
 import com.pratheeban.linkedlist.LinkedList;
 import com.pratheeban.linkedlist.ListNode;
