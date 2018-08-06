@@ -12,6 +12,7 @@ public class BinaryTreeHight {
 	}
 	public static void main(String[] args) {
 		BinaryTreeNode root = BinaryTreeNode.createBinaryTree();
+		root.displayTree();
 		System.out.println(height(root));
 	}
 }

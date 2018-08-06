@@ -1,80 +1,99 @@
 package com.pratheeban.tree;
 
-public class BinaryTreeNode {	
-	public int data;	
+import java.util.Stack;
+
+public class BinaryTreeNode {
+	public int data;
 	public BinaryTreeNode left;
 	public BinaryTreeNode right;
-	
-	public BinaryTreeNode(int data){
+	public BinaryTreeNode parent;
+
+
+	public BinaryTreeNode(int data) {
 		this.data = data;
 		left = null;
 		right = null;
 	}
-	public BinaryTreeNode(int data, BinaryTreeNode left, BinaryTreeNode right){
+
+	public BinaryTreeNode(int data, BinaryTreeNode left, BinaryTreeNode right) {
 		this.data = data;
 		this.left = left;
 		this.right = right;
 	}
+
 	public int getData() {
 		return data;
 	}
+
 	public void setData(int data) {
 		this.data = data;
 	}
+
 	public BinaryTreeNode getLeft() {
 		return left;
 	}
+
 	public void setLeft(BinaryTreeNode left) {
 		this.left = left;
+		if(left!=null) {
+			left.parent = this;
+		}
 	}
+
 	public BinaryTreeNode getRight() {
 		return right;
 	}
+
 	public void setRight(BinaryTreeNode right) {
 		this.right = right;
+		if(right!=null) {
+			right.parent = this;
+		}
 	}
+
 	// Sets the data stored in this node.
-	public String toString1(){
+	public String toString() {
 		return Integer.toString(data);
-	}	
+	}
+
 	// Sets the data in this BinaryTreeNode node.
 	public void setValue(int data) {
 		this.data = data;
 	}
-	
+
 	// Tests whether this node is a leaf node.
 	public boolean isLeaf() {
 		return left == null && right == null;
 	}
 
-
 	// Tests whether the root argument contains within itself the data argument.
-	public static boolean findInBT(BinaryTreeNode root, int  data) {
+	public static boolean findInBT(BinaryTreeNode root, int data) {
 		if (root == null)
-		    return false;
+			return false;
 		if (root.getData() == data)
-		    return true;
-		return findInBT(root.getLeft(), data)  || findInBT(root.getRight(), data);
+			return true;
+		return findInBT(root.getLeft(), data) || findInBT(root.getRight(), data);
 	}
+
 	// Returns a String representation of this BinaryTreeNode.
-	public String toString() {
+	public String display() {
 		if (isLeaf()) {
-			return this.toString1();
-		}
-		else {
-			    String root, left = "null", right = "null";
-			    root = this.toString1();
-			    if (getLeft() != null) {
-					left = getLeft().toString();
-			    }
-			    if (getRight() != null) {
-					right = getRight().toString();
-			    }
-			    return root + " (" + left + ", " + right + ")";
+			return this.toString();
+		} else {
+			String root, left = "null", right = "null";
+			root = this.toString();
+			if (getLeft() != null) {
+				left = getLeft().toString();
+			}
+			if (getRight() != null) {
+				right = getRight().toString();
+			}
+			return root + " (" + left + ", " + right + ")";
 		}
 	}
-	
-	// Computes a hash code for the complete binary tree rooted at this BinaryTreeNode node.
+
+	// Computes a hash code for the complete binary tree rooted at this
+	// BinaryTreeNode node.
 	public int hashCode() {
 		int result = this.hashCode();
 		if (left != null) {
@@ -86,18 +105,20 @@ public class BinaryTreeNode {
 		return result;
 	}
 
-	// Returns the total number of nodes in this binary tree (include the root in the count).
+	// Returns the total number of nodes in this binary tree (include the root in
+	// the count).
 	public int numberOfNodes() {
 		int leftCount = this.left == null ? 0 : left.numberOfNodes();
 		int rightCount = this.right == null ? 0 : right.numberOfNodes();
 		return 1 + leftCount + rightCount;
 	}
-
+	
 	// Returns a new BinaryTreeNode equal to (but not the same as) this binary tree.
-	// Every node in this new BinaryTreeNode will be created by the copy method; values
+	// Every node in this new BinaryTreeNode will be created by the copy method;
+	// values
 	// will be identical (==) to values in the given binary tree.
 	public BinaryTreeNode copy() {
-		BinaryTreeNode left =  null, right = null;
+		BinaryTreeNode left = null, right = null;
 		if (this.left != null) {
 			left = this.left.copy();
 		}
@@ -106,13 +127,13 @@ public class BinaryTreeNode {
 		}
 		return new BinaryTreeNode(this.data, left, right);
 	}
-	
+
 	// Returns a new binary tree which is the mirror image of the binary tree whose
 	// root is at this binary tree. That is, for every node in the new binary tree,
 	// its children are in reverse order (left child becomes right child, right
 	// child becomes left child).
 	public BinaryTreeNode reverse() {
-		BinaryTreeNode left =  null, right = null;
+		BinaryTreeNode left = null, right = null;
 		if (this.left != null) {
 			left = this.left.reverse();
 		}
@@ -135,8 +156,60 @@ public class BinaryTreeNode {
 		BinaryTreeNode temp = this.left;
 		this.setLeft(this.right);
 		this.setRight(temp);
-	}	
-	
+	}
+	public static BinaryTreeNode createMinimalBST(int[] a) {
+		return createMinimalBST(a, 0, a.length - 1);
+	}
+
+	public static BinaryTreeNode createMinimalBST(int[] a, int start, int end) {
+		if (end < start) {
+			return null;
+		}
+		int mid = (start + end) / 2;
+		BinaryTreeNode bt = new BinaryTreeNode(a[mid]);
+		bt.setLeft(createMinimalBST(a, start, mid - 1));
+		bt.setRight(createMinimalBST(a, mid + 1, end));
+		return bt;
+	}
+
+	public void displayTree() {
+		Stack globalStack = new Stack();
+		globalStack.push(this);
+		int nBlanks = 32;
+		boolean isRowEmpty = false;
+		System.out.println("......................................................");
+		while (isRowEmpty == false) {
+			Stack localStack = new Stack();
+			isRowEmpty = true;
+
+			for (int j = 0; j < nBlanks; j++)
+				System.out.print(' ');
+
+			while (globalStack.isEmpty() == false) {
+				BinaryTreeNode temp = (BinaryTreeNode) globalStack.pop();
+				if (temp != null) {
+					System.out.print(temp.data);
+					localStack.push(temp.left);
+					localStack.push(temp.right);
+
+					if (temp.left != null || temp.right != null)
+						isRowEmpty = false;
+				} else {
+					System.out.print("--");
+					localStack.push(null);
+					localStack.push(null);
+				}
+				for (int j = 0; j < nBlanks * 2 - 2; j++)
+					System.out.print(' ');
+			} // end while globalStack not empty
+			System.out.println();
+			nBlanks /= 2;
+			while (localStack.isEmpty() == false)
+				globalStack.push(localStack.pop());
+		} // end while isRowEmpty is false
+		System.out.println("......................................................");
+	} // end displayTree()
+
 	public static BinaryTreeNode createBinaryTree() {
 
 		BinaryTreeNode rootNode = new BinaryTreeNode(40);
@@ -166,4 +239,3 @@ public class BinaryTreeNode {
 		return rootNode;
 	}
 }
-

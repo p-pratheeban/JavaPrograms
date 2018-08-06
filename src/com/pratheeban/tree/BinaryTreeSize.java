@@ -10,6 +10,7 @@ public class BinaryTreeSize {
 	}
 	public static void main(String[] args) {
 		BinaryTreeNode b = BinaryTreeNode.createBinaryTree();
+		b.displayTree();
 		System.out.println(size(b));
 	}
 }
