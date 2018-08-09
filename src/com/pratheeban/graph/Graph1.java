@@ -28,15 +28,17 @@ public class Graph1 {
 		return null;
 
 	}
+	
+	
 
 	public static Graph1 createNewGraph() {
 		Graph1 g = new Graph1();
 
-		Node A = new Node("a"); 
+		Node A = new Node("a");
 		Node B = new Node("b");
 		Node C = new Node("c");
 		Node D = new Node("d");
-		
+
 		A.addAjacent(B);
 		A.addAjacent(C);
 		A.addAjacent(D);
@@ -53,6 +55,40 @@ public class Graph1 {
 		g.addVertex(D);
 		g.addVertex(E);
 		g.addVertex(F);
+
+		return g;
+	}
+
+	public static Graph1 buildGraph() {
+		Graph1 g = new Graph1();
+
+		Node A = new Node("a");
+		Node B = new Node("b");
+		Node C = new Node("c");
+		Node D = new Node("d");
+		Node E = new Node("e");
+		Node F = new Node("f");
+		Node G = new Node("g");
+		Node H = new Node("h");
+		A.addAjacent(E);
+		B.addAjacent(A);
+		B.addAjacent(E);
+		B.addAjacent(H);
+		C.addAjacent(A);
+		D.addAjacent(G);
+		F.addAjacent(C);
+		F.addAjacent(B);
+		F.addAjacent(A);
+		
+
+		g.addVertex(A);
+		g.addVertex(B);
+		g.addVertex(C);
+		g.addVertex(D);
+		g.addVertex(E);
+		g.addVertex(F);
+		g.addVertex(G);
+		g.addVertex(H);
 
 		return g;
 	}

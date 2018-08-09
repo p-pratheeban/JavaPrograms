@@ -1,4 +1,4 @@
-package com.pratheeban.number.example;
+package com.pratheeban.number;
 
 /**
  * Java Program to print 1 to 100 without using loop

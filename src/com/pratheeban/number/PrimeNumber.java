@@ -1,4 +1,4 @@
-package com.pratheeban.number.example;
+package com.pratheeban.number;
 
 /**
  * Check whether given number is prime or not

@@ -1,4 +1,4 @@
-package com.pratheeban.number.example;
+package com.pratheeban.number;
 /**
  * Java program to swap two numbers in different ways
  * @author Pratheepan

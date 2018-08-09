@@ -24,4 +24,8 @@ public class Node {
 	public String getVertex() {
 		return vertex;
 	}
+	
+	public String toString() {
+		return vertex;
+	}
 }

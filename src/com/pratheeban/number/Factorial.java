@@ -1,4 +1,4 @@
-package com.pratheeban.number.example;
+package com.pratheeban.number;
 
 import java.math.BigInteger;
 

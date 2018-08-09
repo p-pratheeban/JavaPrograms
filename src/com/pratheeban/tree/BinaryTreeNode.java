@@ -1,5 +1,6 @@
 package com.pratheeban.tree;
 
+import java.util.Random;
 import java.util.Stack;
 
 public class BinaryTreeNode {
@@ -7,18 +8,75 @@ public class BinaryTreeNode {
 	public BinaryTreeNode left;
 	public BinaryTreeNode right;
 	public BinaryTreeNode parent;
-
+	public int size = 0;
 
 	public BinaryTreeNode(int data) {
 		this.data = data;
 		left = null;
 		right = null;
+		size = 1;
 	}
 
 	public BinaryTreeNode(int data, BinaryTreeNode left, BinaryTreeNode right) {
 		this.data = data;
 		this.left = left;
 		this.right = right;
+	}
+
+	public void insert(int d) {
+		if (d <= data) {
+			if (left == null) {
+				left = new BinaryTreeNode(d);
+			} else {
+				left.insert(d);
+			}
+		} else {
+			if (right == null) {
+				right = new BinaryTreeNode(d);
+			} else {
+				right.insert(d);
+			}
+		}
+		size++;
+	}
+
+	public int size() {
+		return size;
+	}
+
+	public BinaryTreeNode find(int d) {
+		if (d == data) {
+			return this;
+		} else if (d <= data) {
+			return left != null ? left.find(d) : null;
+		} else if (d > data) {
+			return right != null ? right.find(d) : null;
+		}
+		return null;
+	}
+
+	public BinaryTreeNode getRandomNode() {
+		int leftSize = left == null ? 0 : left.size();
+		Random r = new Random();
+		int index = r.nextInt(size);
+		if (index < leftSize) {
+			return left.getRandomNode();
+		} else if (index == leftSize) {
+			return this;
+		} else {
+			return right.getRandomNode();
+		}
+	}
+	
+	public BinaryTreeNode getIthNode(int i) {
+		int leftSize = left == null ? 0 : left.size();
+		if (i < leftSize) {
+			return left.getIthNode(i);
+		} else if (i == leftSize) {
+			return this;
+		} else {
+			return right.getIthNode(i - (leftSize + 1));
+		}
 	}
 
 	public int getData() {
@@ -35,7 +93,7 @@ public class BinaryTreeNode {
 
 	public void setLeft(BinaryTreeNode left) {
 		this.left = left;
-		if(left!=null) {
+		if (left != null) {
 			left.parent = this;
 		}
 	}
@@ -46,7 +104,7 @@ public class BinaryTreeNode {
 
 	public void setRight(BinaryTreeNode right) {
 		this.right = right;
-		if(right!=null) {
+		if (right != null) {
 			right.parent = this;
 		}
 	}
@@ -112,7 +170,7 @@ public class BinaryTreeNode {
 		int rightCount = this.right == null ? 0 : right.numberOfNodes();
 		return 1 + leftCount + rightCount;
 	}
-	
+
 	// Returns a new BinaryTreeNode equal to (but not the same as) this binary tree.
 	// Every node in this new BinaryTreeNode will be created by the copy method;
 	// values
@@ -157,6 +215,13 @@ public class BinaryTreeNode {
 		this.setLeft(this.right);
 		this.setRight(temp);
 	}
+
+	public void CreateTree(int a[]) {
+		for (int i = 0; i < a.length; i++) {
+			insert(a[i]);
+		}
+	}
+
 	public static BinaryTreeNode createMinimalBST(int[] a) {
 		return createMinimalBST(a, 0, a.length - 1);
 	}

@@ -41,6 +41,38 @@ public class RotateImage {
 		printMatrix(grid);
 	}
 
+	public static int[] reverseAndInvert(int a[]) {
+		int[] reverse = new int[a.length];
+		int j = 0;
+		for (int i = a.length - 1; i >= 0; i--) {
+			/*
+			 * if(a[i]==0) { reverse[j++] = 1; } else { reverse[j++] = 0; }
+			 */
+			reverse[j++] = a[i] ^ 1;
+
+		}
+		return reverse;
+	}
+
+	public static int[][] flipImage(int grid[][]) {
+		for (int r = 0; r < grid.length; r++) {
+			grid[r] = reverseAndInvert(grid[r]);
+		}
+		return grid;
+	}
+
+	public static int[][] flipAndInvertImage(int[][] A) {
+		int C = A[0].length;
+		for (int[] row : A)
+			for (int i = 0; i < (C + 1) / 2; ++i) {
+				int tmp = row[i] ^ 1;
+				row[i] = row[C - 1 - i] ^ 1;
+				row[C - 1 - i] = tmp;
+			}
+
+		return A;
+	}
+
 	public static void main(String[] args) {
 		int[][] grid = new int[4][4];
 		for (int i = 0; i < grid.length; i++) {
@@ -53,8 +85,22 @@ public class RotateImage {
 		printMatrix(grid);
 		System.out.println("After Rotation");
 		rotate90(grid);
-		
+
 		System.out.println("After Rotation");
 		inplaceRotate(grid);
+
+		int[][] grid1 = new int[4][4];
+		for (int i = 0; i < grid1.length; i++) {
+			for (int j = 0; j < grid1[i].length; j++) {
+				grid1[i][j] = (int) (Math.random() * 2);
+			}
+		}
+		System.out.println("Before Flip Image Horizonatally");
+		printMatrix(grid1);
+		System.out.println("After Flip Image Horizonatally");
+		printMatrix(flipImage(grid1));
+		System.out.println("After Flip Image Horizonatally");
+		printMatrix(flipAndInvertImage(grid1));
+
 	}
 }
