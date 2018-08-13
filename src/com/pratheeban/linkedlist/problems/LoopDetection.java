@@ -6,11 +6,11 @@ import com.pratheeban.linkedlist.ListNode;
 public class LoopDetection {
 	public static ListNode FindBeginning(ListNode head) {
 		ListNode slow = head;
-		ListNode fast = head; 
-		
+		ListNode fast = head;
+
 		// Find meeting point
-		while (fast != null && fast.next != null) { 
-			slow = slow.next; 
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
 			fast = fast.next.next;
 			if (slow == fast) {
 				break;
@@ -22,23 +22,24 @@ public class LoopDetection {
 			return null;
 		}
 
-		/* Move slow to Head. Keep fast at Meeting Point. Each are k steps
-		/* from the Loop Start. If they move at the same pace, they must
-		 * meet at Loop Start. */
-		slow = head; 
-		while (slow != fast) { 
-			slow = slow.next; 
-			fast = fast.next; 
+		/*
+		 * Move slow to Head. Keep fast at Meeting Point. Each are k steps /* from the
+		 * Loop Start. If they move at the same pace, they must meet at Loop Start.
+		 */
+		slow = head;
+		while (slow != fast) {
+			slow = slow.next;
+			fast = fast.next;
 		}
-		
+
 		// Both now point to the start of the loop.
 		return fast;
 	}
-	
+
 	public static void main(String[] args) {
 		LinkedList list1 = new LinkedList();
 		// Creating a linked list
-		ListNode loopNode=new ListNode(7);
+		ListNode loopNode = new ListNode(7);
 		list1.inserAtLast(new ListNode(15));
 		list1.inserAtLast(new ListNode(6));
 		list1.inserAtLast(new ListNode(7));
@@ -51,8 +52,6 @@ public class LoopDetection {
 		// creating a loop
 		list1.inserAtLast(loopNode);
 
-		
-		
 		ListNode loop = FindBeginning(list1.getHead());
 		if (loop == null) {
 			System.out.println("No Cycle.");

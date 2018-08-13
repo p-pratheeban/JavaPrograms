@@ -39,6 +39,8 @@ public class Fibonnaci {
 	}
 	public static void main(String[] args) {
 		System.out.println(fibonacci(10));
+		System.out.println(fibonacci(7));
+
 		int n = 10;
 		int [] fib = new int[n+1];
 		System.out.println(fibnacci(n, fib));

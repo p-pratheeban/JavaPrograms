@@ -67,14 +67,11 @@ public class Palindrome {
 
 		while (i < j) {
 			char left = charArray[i], right = charArray[j];
-
 			while (i < len - 1 && !isAlpha(left) && !isNum(left)) {
 				i++;
-				left = charArray[i];
 			}
 			while (j > 0 && !isAlpha(right) && !isNum(right)) {
 				j--;
-				right = charArray[j];
 			}
 			if (i >= j)
 				break;
@@ -159,13 +156,14 @@ public class Palindrome {
 			return false;
 		s = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 		System.out.println(s);
-		for (int i = 0; i < s.length()/2; i++) {
+		for (int i = 0; i < s.length() / 2; i++) {
 			if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
 				return false;
 			}
 		}
 		return true;
 	}
+
 	public void display3(String inputStr) {
 		if (isPalindrome3(inputStr)) {
 			System.out.println(inputStr + " is a palindrome");
@@ -173,6 +171,30 @@ public class Palindrome {
 			System.out.println(inputStr + " is not a palindrome");
 		}
 	}
+
+	public boolean isPalindrome4(String s) {
+		int i = 0, j = s.length() - 1;
+		while (i < j) {
+			while (i < j && !Character.isLetterOrDigit(s.charAt(i)))
+				i++;
+			while (i < j && !Character.isLetterOrDigit(s.charAt(j)))
+				j--;
+			if (Character.toLowerCase(s.charAt(i)) != Character.toLowerCase(s.charAt(j))) {
+				return false;
+			}
+			i++;
+			j--;
+		}
+		return true;
+	}
+	public void display4(String inputStr) {
+		if (isPalindrome4(inputStr)) {
+			System.out.println(inputStr + " is a palindrome");
+		} else {
+			System.out.println(inputStr + " is not a palindrome");
+		}
+	}
+
 	public static void main(String[] args) {
 		Palindrome palindrome = new Palindrome();
 		palindrome.display("1221");
@@ -183,6 +205,8 @@ public class Palindrome {
 		palindrome.display1("Live on evasions? No, I save no evil.");
 		palindrome.display2("Live on evasions? No, I save no evil.");
 		palindrome.display3("Live on evasions? No, I save no evil.");
+		palindrome.display4("Live on evasions? No, I save no evil.");
+
 
 	}
 }

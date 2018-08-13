@@ -22,7 +22,7 @@ public class ReverseLinkedList {
 			return node;
 		}
 
-		ListNode remaining = reverseLinkedList(node.next);
+		ListNode remaining = reverseLinkedList1(node.next);
 		node.next.next = node;
 		node.next = null;
 		return remaining;

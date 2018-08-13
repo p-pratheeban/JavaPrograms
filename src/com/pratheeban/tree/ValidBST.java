@@ -3,6 +3,7 @@ package com.pratheeban.tree;
 public class ValidBST {
 	int index = 0;
 	Integer last_printed = null;
+	private static BinaryTreeNode prev;
 
 	public void copyBST(BinaryTreeNode root, BinaryTreeNode[] arr) {
 		if (root == null) {
@@ -17,7 +18,6 @@ public class ValidBST {
 	public boolean checkBST(BinaryTreeNode root) {
 		BinaryTreeNode[] arr = new BinaryTreeNode[root.numberOfNodes()];
 		copyBST(root, arr);
-		;
 		for (int i = 0; i < arr.length - 1; i++) {
 			if (arr[i].data > arr[i + 1].data) {
 				return false;
@@ -64,6 +64,7 @@ public class ValidBST {
 		return true;
 	}
 
+	// O(n) runtime, O(n) stack space – Top-down recursion
 	public boolean checkBST(BinaryTreeNode n, Integer min, Integer max) {
 		if (n == null) {
 			return true;
@@ -75,6 +76,24 @@ public class ValidBST {
 			return false;
 		}
 		return true;
+	}
+
+	public static boolean isValidBST(BinaryTreeNode root) {
+		prev = null;
+		return isMonotonicIncreasing(root);
+	}
+
+	// O(n) runtime, O(n) stack space – In-order traversal
+	private static boolean isMonotonicIncreasing(BinaryTreeNode p) {
+		if (p == null)
+			return true;
+		if (isMonotonicIncreasing(p.left)) {
+			if (prev != null && p.data <= prev.data)
+				return false;
+			prev = p;
+			return isMonotonicIncreasing(p.right);
+		}
+		return false;
 	}
 
 	public boolean checkBST2(BinaryTreeNode n) {
@@ -89,6 +108,7 @@ public class ValidBST {
 		System.out.println(b1.checkBST(root));
 		System.out.println(b1.checkBST1(root));
 		System.out.println(b1.checkBST2(root));
+		System.out.println(b1.isValidBST(root));
 
 		ValidBST b2 = new ValidBST();
 
@@ -98,6 +118,7 @@ public class ValidBST {
 		System.out.println(b2.checkBST(root1));
 		System.out.println(b2.checkBST1(root1));
 		System.out.println(b2.checkBST2(root1));
+		System.out.println(b2.isValidBST(root1));
 
 	}
 }

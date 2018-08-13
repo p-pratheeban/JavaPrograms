@@ -1,4 +1,4 @@
-package com.pratheeban.stack;
+package com.pratheeban.stack.application;
 
 import java.util.Stack;
 
