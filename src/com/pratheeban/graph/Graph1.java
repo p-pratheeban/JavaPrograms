@@ -1,5 +1,6 @@
 package com.pratheeban.graph;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class Graph1 {
 	private List<Node> vertex;
 
 	public Graph1() {
-		vertex = new LinkedList<>();
+		vertex = new ArrayList<>();
 	}
 
 	public void addVertex(Node x) {

@@ -1,7 +1,5 @@
 package com.pratheeban.linkedlist;
 
-import javax.xml.ws.FaultAction;
-
 public class LinkedList {
 
 	private int length;

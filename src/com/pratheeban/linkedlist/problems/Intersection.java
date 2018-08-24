@@ -66,5 +66,34 @@ public class Intersection {
 		/* Return either one. */
 		return longer;
 	}
+	// Create a pointer that iterates through a list. When it's at the end
+	// of the list, have it jump to the beginning of the other list. Create
+	// 2 of these pointers, pointing to 2 different list heads. The pointers  
+	// will collide at the merge point after 1 or 2 passes.
+
+	//  Time Complexity: O(n + m)
+	// Space Complexity: O(1)
+	int FindMergeNode(ListNode headA, ListNode headB) {
+		ListNode currentA = headA;
+		ListNode currentB = headB;
+
+	    //Do till the two nodes are the same
+	    while(currentA != currentB){
+	        //If you reached the end of one list start at the beginning of the other one
+	        //currentA
+	        if(currentA.next == null){
+	            currentA = headB;
+	        }else{
+	            currentA = currentA.next;
+	        }
+	        //currentB
+	        if(currentB.next == null){
+	            currentB = headA;
+	        }else{
+	            currentB = currentB.next;
+	        }
+	    }
+	    return currentB.data;
+	}
 
 }

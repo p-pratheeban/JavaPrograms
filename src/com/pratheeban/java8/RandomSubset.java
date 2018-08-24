@@ -1,0 +1,55 @@
+package com.pratheeban.java8;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+public class RandomSubset {
+	
+	public static Random random = new Random();
+
+	public static List<Integer> getRandomSubset(List<Integer> list) {
+		List<Integer> subset = new ArrayList<Integer>();
+		Random random = new Random();
+		for (int item : list) {
+			if (random.nextBoolean()) {
+				subset.add(item);
+			}
+		}
+		return subset;
+	}
+	
+	public static List<Integer> getRandomSubset1(List<Integer> list) {
+		Random random = new Random();
+		List<Integer> subset = list.stream().filter( k -> {
+			return random.nextBoolean(); /* Flip coin. */
+		}).collect(Collectors.toList());
+		return subset;
+	}
+	
+	public static Predicate<Object> flipCoin = o -> {
+		return random.nextBoolean();
+	};
+	
+	public static List<Integer> getRandomSubset2(List<Integer> list) {
+ 		List<Integer> subset = list.stream().filter(flipCoin).
+ 			collect(Collectors.toList());
+ 		return subset;
+	}
+
+	public static void main(String... args) {
+		List<Integer> list = new ArrayList<Integer>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		List<Integer> subset = getRandomSubset(list);
+		System.out.println(subset.toString());
+		List<Integer> subset1 = getRandomSubset1(list);
+		System.out.println(subset1.toString());
+		List<Integer> subset2 = getRandomSubset1(list);
+		System.out.println(subset2.toString());
+	}
+}

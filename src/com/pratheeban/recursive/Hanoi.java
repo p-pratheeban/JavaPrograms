@@ -16,3 +16,16 @@ public class Hanoi {
 		move(3, 'S', 'D', 'A');
 	}
 }
+/*
+move(3,S,D,A);
+	move(2,S,A,D)
+		move(1,S,D,A)=>Move Disk 1 S D
+		Move Disk 2 S A
+		move(1,D,A,S) =>Move Disk 1 D A
+	Move Disk 3 S D
+	move(2,A,D,S)
+		move(1,A,S,D)=>Move Disk 1 A S
+		Move Disk 2 A D
+		move(1,S,D,A)=>Move Disk 1 S D
+
+*/

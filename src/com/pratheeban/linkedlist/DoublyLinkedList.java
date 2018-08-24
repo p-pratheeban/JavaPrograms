@@ -1,6 +1,6 @@
 package com.pratheeban.linkedlist;
 
-public class DoublyLinkedList{
+public class DoublyLinkedList {
 	// properties
 	private DLLNode head;
 	private DLLNode tail;
@@ -8,11 +8,11 @@ public class DoublyLinkedList{
 
 	// Create a new empty list.
 	public DoublyLinkedList() {
-		head = new DLLNode(Integer.MIN_VALUE,null,null);
+		head = new DLLNode(Integer.MIN_VALUE, null, null);
 		tail = new DLLNode(Integer.MIN_VALUE, head, null);
 		head.setNext(tail);
 		length = 0;
-	} 
+	}
 
 	// Get the value at a given position.
 	public int get(int position) {
@@ -35,7 +35,7 @@ public class DoublyLinkedList{
 		}
 		// else return -1
 		return Integer.MIN_VALUE;
-	} 
+	}
 
 	// Return the current length of the DLL.
 	public int length() {
@@ -44,11 +44,11 @@ public class DoublyLinkedList{
 
 	// Add a new value to the front of the list.
 	public void insert(int newValue) {
-		DLLNode newNode = new DLLNode(newValue,null,head.getNext());
+		DLLNode newNode = new DLLNode(newValue, null, head.getNext());
 		newNode.getNext().setPrev(newNode);
 		head = newNode;
 		length += 1;
-	} 
+	}
 
 	// Add a new value to the list at a given position.
 	// All values at that position to the end move over to make room.
@@ -75,7 +75,7 @@ public class DoublyLinkedList{
 		// else find the correct position and insert
 		else {
 			DLLNode temp = head;
-			for (int i=1; i<position; i+=1) {
+			for (int i = 1; i < position; i += 1) {
 				temp = temp.getNext();
 			}
 			DLLNode newNode = new DLLNode(data);
@@ -86,11 +86,11 @@ public class DoublyLinkedList{
 		}
 		// the list is now one value longer
 		length += 1;
-	} 
-	
+	}
+
 	// Add a new value to the rear of the list.
 	public void insertTail(int newValue) {
-		DLLNode newNode = new DLLNode(newValue,tail.getPrev(),tail);
+		DLLNode newNode = new DLLNode(newValue, tail.getPrev(), tail);
 		newNode.getPrev().setNext(newNode);
 		tail.setPrev(newNode);
 		length += 1;
@@ -104,15 +104,15 @@ public class DoublyLinkedList{
 		if (position < 0) {
 			position = 0;
 		}
-		
+
 		if (position >= length) {
-			position = length-1;
+			position = length - 1;
 		}
-		
+
 		// if nothing in the list, do nothing
 		if (head == null)
 			return;
-		
+
 		// if removing the head element...
 		if (position == 0) {
 			head = head.getNext();
@@ -122,7 +122,7 @@ public class DoublyLinkedList{
 		// else advance to the correct position and remove
 		else {
 			DLLNode temp = head;
-			for (int i=1; i<position; i+=1) {
+			for (int i = 1; i < position; i += 1) {
 				temp = temp.getNext();
 			}
 			temp.getNext().setPrev(temp.getPrev());
@@ -131,20 +131,20 @@ public class DoublyLinkedList{
 		// reduce the length of the list
 		length -= 1;
 	}
-	
-	// Remove a node matching the specified node from the list.  
+
+	// Remove a node matching the specified node from the list.
 	// Use equals() instead of == to test for a matched node.
 	public synchronized void removeMatched(DLLNode node) {
-		if (head == null) 
+		if (head == null)
 			return;
-		if (node.equals(head)) { 
-			head = head.getNext(); 
+		if (node.equals(head)) {
+			head = head.getNext();
 			if (head == null)
 				tail = null;
 			return;
 		}
 		DLLNode p = head;
-		while(p != null) {
+		while (p != null) {
 			if (node.equals(p)) {
 				p.prev.next = p.next;
 				p.next.prev = p.prev;
@@ -152,17 +152,17 @@ public class DoublyLinkedList{
 			}
 		}
 	}
-	
+
 	// Remove the head value from the list. If the list is empty, do nothing.
 	public int removeHead() {
 		if (length == 0)
-		    return Integer.MIN_VALUE;
+			return Integer.MIN_VALUE;
 		DLLNode save = head.getNext();
 		head.setNext(save.getNext());
 		save.getNext().setPrev(head);
 		length -= 1;
 		return save.getData();
-	} 
+	}
 
 	// Remove the tail value from the list. If the list is empty, do nothing.
 	public int removeTail() {
@@ -173,9 +173,10 @@ public class DoublyLinkedList{
 		save.getPrev().setNext(tail);
 		length -= 1;
 		return save.getData();
-	} 
+	}
 
-	// Return a string representation of this collection, in the form: ["str1","str2",...].
+	// Return a string representation of this collection, in the form:
+	// ["str1","str2",...].
 	public String toString() {
 		String result = "[]";
 		if (length == 0)
@@ -184,15 +185,28 @@ public class DoublyLinkedList{
 		DLLNode temp = head.getNext().getNext();
 		while (temp != tail) {
 			result += "," + temp.getData();
-			temp =  temp.getNext();
+			temp = temp.getNext();
 		}
 		return result + "]";
-	}	
-	
+	}
+
+	static DLLNode reverse(DLLNode head) {
+		DLLNode prev = null;
+		DLLNode next = null;
+		while (head != null) {
+			next = head.next;
+			head.next = prev;
+			head.prev = next;
+			prev = head;
+			head = next;
+		}
+		return prev;
+	}
+
 	// Remove everything from the DLL.
-	public void clearList(){
+	public void clearList() {
 		head = null;
 		tail = null;
 		length = 0;
 	}
-} 
+}

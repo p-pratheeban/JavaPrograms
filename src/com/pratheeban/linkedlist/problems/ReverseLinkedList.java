@@ -5,13 +5,14 @@ import com.pratheeban.linkedlist.ListNode;
 
 public class ReverseLinkedList {
 	public static ListNode reverseLinkedList(ListNode head) {
+		ListNode current = head;
 		ListNode nextNode = null;
 		ListNode previousNode = null;
-		while (head != null) {
+		while (current != null) {
 			nextNode = head.next;
-			head.next = previousNode;
-			previousNode = head;
-			head = nextNode;
+			current.next = previousNode;
+			previousNode = current;
+			current = nextNode;
 
 		}
 		return previousNode;

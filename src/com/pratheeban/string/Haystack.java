@@ -2,6 +2,7 @@ package com.pratheeban.string;
 
 public class Haystack {
 
+	//T(n)=O(m+n)
 	public static int strStr(String haystack, String needle) {
 		for (int i = 0;; i++) {
 			for (int j = 0;; j++) {
