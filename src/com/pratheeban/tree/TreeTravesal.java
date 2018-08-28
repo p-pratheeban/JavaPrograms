@@ -1,8 +1,10 @@
 package com.pratheeban.tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -301,6 +303,65 @@ public class TreeTravesal {
 		System.out.println();
 	}
 
+	public static void printLevelOrder(BinaryTreeNode root) {
+		if (root == null) {
+			return;
+		}
+		Queue<BinaryTreeNode> curLevel = new LinkedList<>();
+		Queue<BinaryTreeNode> nextLevel = new LinkedList<>();
+		curLevel.add(root);
+		while (curLevel.isEmpty() == false) {
+			while (curLevel.isEmpty() == false) {
+				BinaryTreeNode curNode = curLevel.poll();
+				System.out.print(curNode.data + " ");
+				if (curNode.left != null) {
+					nextLevel.add(curNode.left);
+				}
+				if (curNode.right != null) {
+					nextLevel.add(curNode.right);
+				}
+			}
+			System.out.println();
+			curLevel = nextLevel;
+			nextLevel = new LinkedList<BinaryTreeNode>();
+		}
+	}
+
+	public static void makeVerticalLevelOrder(BinaryTreeNode root, int hd, Map<Integer, List<Integer>> hm,
+			int[] minMax) {
+		if (root == null) {
+			return;
+		}
+		// save the minimum and maximum
+		// horizontal distance (hd) of current node from root
+		minMax[0] = Math.min(minMax[0], hd);
+		minMax[1] = Math.max(minMax[1], hd);
+		List<Integer> curHdLevel;
+		if (hm.containsKey(hd) == true) {
+			curHdLevel = hm.get(hd);
+		} else {
+			curHdLevel = new LinkedList<Integer>();
+		}
+		curHdLevel.add(root.data);
+		hm.put(hd, curHdLevel);
+		makeVerticalLevelOrder(root.left, hd - 1, hm, minMax);
+		makeVerticalLevelOrder(root.right, hd + 1, hm, minMax);
+	}
+
+	public static void printVerticalLevelOder(BinaryTreeNode root) {
+		Map<Integer, List<Integer>> hm = new HashMap<Integer, List<Integer>>();
+		int minMax[] = new int[2];
+		makeVerticalLevelOrder(root, 0, hm, minMax);
+		// print the list
+		for (int lvl = minMax[0]; lvl <= minMax[1]; lvl++) {
+			List<Integer> curHdLevel = hm.get(lvl);
+			for (Integer node : curHdLevel) {
+				System.out.print(node + " ");
+			}
+			System.out.println();
+		}
+	}
+
 	public static List<LinkedList<BinaryTreeNode>> createLevelLinkedListBST(BinaryTreeNode root) {
 		List<LinkedList<BinaryTreeNode>> result = new ArrayList<>();
 		LinkedList<BinaryTreeNode> current = new LinkedList<>();
@@ -322,15 +383,20 @@ public class TreeTravesal {
 		}
 		return result;
 	}
-	
-	public static void createLevelLinkedListDFS(BinaryTreeNode root, ArrayList<LinkedList<BinaryTreeNode>> lists, int level) {
-		if (root == null) return;
+
+	public static void createLevelLinkedListDFS(BinaryTreeNode root, ArrayList<LinkedList<BinaryTreeNode>> lists,
+			int level) {
+		if (root == null)
+			return;
 		LinkedList<BinaryTreeNode> list = null;
 		if (lists.size() == level) { // Level not contained in list
 			list = new LinkedList<BinaryTreeNode>();
-			/* Levels are always traversed in order. So, if this is the first time we've visited level i,
-			 * we must have seen levels 0 through i - 1. We can therefore safely add the level at the end. */
-			lists.add(list);  
+			/*
+			 * Levels are always traversed in order. So, if this is the first time we've
+			 * visited level i, we must have seen levels 0 through i - 1. We can therefore
+			 * safely add the level at the end.
+			 */
+			lists.add(list);
 		} else {
 			list = lists.get(level);
 		}
@@ -338,12 +404,12 @@ public class TreeTravesal {
 		createLevelLinkedListDFS(root.left, lists, level + 1);
 		createLevelLinkedListDFS(root.right, lists, level + 1);
 	}
-	
+
 	public static ArrayList<LinkedList<BinaryTreeNode>> createLevelLinkedList(BinaryTreeNode root) {
 		ArrayList<LinkedList<BinaryTreeNode>> lists = new ArrayList<LinkedList<BinaryTreeNode>>();
 		createLevelLinkedListDFS(root, lists, 0);
 		return lists;
-	}	
+	}
 
 	public static void main(String[] args) {
 		BinaryTreeNode root = BinaryTreeNode.createBinaryTree();
@@ -364,17 +430,19 @@ public class TreeTravesal {
 		levelOderTravesal(root);
 		System.out.println("\nReverse level Oder");
 		levelOderReversal(root);
+		System.out.println("\nVertical level Oder");
+		printVerticalLevelOder(root);
 		System.out.println("\nlevel Oder List");
 
 		List<LinkedList<BinaryTreeNode>> result = createLevelLinkedListBST(root);
-		for(LinkedList<BinaryTreeNode> level:result)
-		System.out.println(level);
-		
+		for (LinkedList<BinaryTreeNode> level : result)
+			System.out.println(level);
+
 		System.out.println("\nlevel Oder List");
 
 		List<LinkedList<BinaryTreeNode>> result1 = createLevelLinkedList(root);
-		for(LinkedList<BinaryTreeNode> level:result1)
-		System.out.println(level);
+		for (LinkedList<BinaryTreeNode> level : result1)
+			System.out.println(level);
 
 	}
 }

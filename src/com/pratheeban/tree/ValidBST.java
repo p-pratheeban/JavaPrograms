@@ -78,6 +78,16 @@ public class ValidBST {
 		return true;
 	}
 
+	public static boolean isBST(BinaryTreeNode root, int min, int max) {
+		if (root == null) {
+			return true;
+		}
+		if (root.data > min && root.data < max) {
+			return isBST(root.left, min, root.data) && isBST(root.right, root.data, max);
+		}
+		return false;
+	}
+
 	public static boolean isValidBST(BinaryTreeNode root) {
 		prev = null;
 		return isMonotonicIncreasing(root);
@@ -109,6 +119,7 @@ public class ValidBST {
 		System.out.println(b1.checkBST1(root));
 		System.out.println(b1.checkBST2(root));
 		System.out.println(b1.isValidBST(root));
+		System.out.println(b1.isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
 
 		ValidBST b2 = new ValidBST();
 
@@ -119,6 +130,7 @@ public class ValidBST {
 		System.out.println(b2.checkBST1(root1));
 		System.out.println(b2.checkBST2(root1));
 		System.out.println(b2.isValidBST(root1));
+		System.out.println(b2.isBST(root1, Integer.MIN_VALUE, Integer.MAX_VALUE));
 
 	}
 }

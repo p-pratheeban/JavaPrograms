@@ -3,7 +3,7 @@ package com.pratheeban.divideandconquire;
 import java.util.Arrays;
 
 public class MergeSort {
-	
+
 	public static void mergeSort(int[] array) {
 		mergeSort(array, new int[array.length], 0, array.length - 1);
 	}
@@ -48,7 +48,8 @@ public class MergeSort {
 	}
 
 	public static void main(String[] args) {
-		int[] array = { 34, 23, 45, 13, 56, 7, 34, 67, 44 };
+		// int[] array = { 34, 23, 45, 13, 56, 7, 34, 67, 44 };
+		int[] array = { 34, 23, 45, 13 };
 		System.out.println(Arrays.toString(array));
 		mergeSort(array);
 		System.out.println(Arrays.toString(array));

@@ -141,6 +141,7 @@ public class DoublyLinkedList {
 			head = head.getNext();
 			if (head == null)
 				tail = null;
+			head.prev = null;
 			return;
 		}
 		DLLNode p = head;
@@ -150,6 +151,7 @@ public class DoublyLinkedList {
 				p.next.prev = p.prev;
 				return;
 			}
+			p = p.next;
 		}
 	}
 
@@ -190,7 +192,7 @@ public class DoublyLinkedList {
 		return result + "]";
 	}
 
-	static DLLNode reverse(DLLNode head) {
+	public DLLNode reverse(DLLNode head) {
 		DLLNode prev = null;
 		DLLNode next = null;
 		while (head != null) {

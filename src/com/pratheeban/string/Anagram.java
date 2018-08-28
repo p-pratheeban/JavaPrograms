@@ -2,6 +2,9 @@ package com.pratheeban.string;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This program checks if two Strings are anagrams or not
@@ -180,6 +183,29 @@ public class Anagram {
 		return true;
 	}
 
+	public static void bucketAnagram(List<String> input) {
+		Map<String, List<String>> hm = new HashMap<>();
+		for (String word : input) {
+			char[] wordArr = word.toCharArray();
+			Arrays.sort(wordArr);
+			String key = new String(wordArr);
+			List<String> list;
+			if (hm.containsKey(key) == false) {
+				list = new LinkedList<String>();
+			} else {
+				list = hm.get(key);
+			}
+			list.add(word);
+			hm.put(key, list);
+		}
+		for (Map.Entry<String, List<String>> entry : hm.entrySet()) {
+			for (String word : entry.getValue()) {
+				System.out.print(word + " ");
+			}
+			System.out.println();
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println(isAnagram("word", "wrdo"));
 		System.out.println(isAnagrams("word", "wrdo"));
@@ -189,6 +215,7 @@ public class Anagram {
 		System.out.println(areAnagram("worod".toCharArray(), "wrodo".toCharArray()));
 		System.out.println(isAnagram("worod".toCharArray(), "wrodo".toCharArray()));
 		System.out.println(isAnagram1("word", "wrdo"));
+		bucketAnagram(Arrays.asList("abc", "hello", "cba"));
 
 	}
 }

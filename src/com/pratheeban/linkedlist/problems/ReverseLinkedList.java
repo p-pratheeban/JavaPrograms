@@ -18,6 +18,19 @@ public class ReverseLinkedList {
 		return previousNode;
 	}
 
+	public static ListNode revList(ListNode head, ListNode prev) {
+		if (head == null && prev == null) {
+			return null;
+		}
+		ListNode next = head.next;
+		head.next = prev;
+		if (next == null) {
+			return head;
+		} else {
+			return revList(next, head);
+		}
+	}
+
 	public static ListNode reverseLinkedList1(ListNode node) {
 		if (node == null || node.next == null) {
 			return node;
@@ -49,7 +62,7 @@ public class ReverseLinkedList {
 
 		LinkedList list1 = new LinkedList();
 		// Creating a linked list
-		ListNode loopNode=new ListNode(7);
+		ListNode loopNode = new ListNode(7);
 		list1.inserAtLast(new ListNode(15));
 		list1.inserAtLast(new ListNode(6));
 		list1.inserAtLast(new ListNode(7));
@@ -57,7 +70,7 @@ public class ReverseLinkedList {
 		list1.inserAtLast(loopNode);
 		list1.inserAtLast(new ListNode(1));
 		list1.inserAtLast(new ListNode(2));
- 
+
 		System.out.println(list1);
 		// creating a loop
 		list1.inserAtLast(loopNode);

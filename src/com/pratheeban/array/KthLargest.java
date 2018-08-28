@@ -59,13 +59,41 @@ public class KthLargest {
 		nums[n2] = tmp;
 	}
 
+	public static int partition(int[] arr, int first, int last) {
+		int pivot = first;
+		swap(arr, last, pivot);
+		for (int i = first; i < last; i++) {
+			if (arr[i] > last) {
+				swap(arr, i, first);
+				first++;
+			}
+		}
+		swap(arr, first, last);
+		return first;
+	}
+
+	public static int quickselect(int[] arr, int first, int last, int k) {
+		if (first > last)
+			return Integer.MIN_VALUE;
+		int pivot = partition(arr, first, last);
+		if (pivot == k) {
+			return arr[pivot];
+		}
+		if (pivot > k) {
+			return quickselect(arr, first, pivot - 1, k);
+		} else {
+			return quickselect(arr, pivot + 1, last, k);
+		}
+	}
+
 	public static void main(String[] args) {
 		int a[] = { 3, 2, 1, 5, 6, 4 };
 		System.out.println(findKthLargest(a, 3));
-		int a1[] = { 3, 2, 1, 5, 6, 4 };
+		int a1[] = { 3, 2, 1, 5, 6, 4, 8 };
 		System.out.println(findKthLargest1(a1, 3));
 		int a2[] = { 3, 2, 1, 5, 6, 4 };
 		System.out.println(findKthLargest2(a2, 2));
+		System.out.println(quickselect(a2, 0, a2.length - 1, 2));
 
 	}
 }
