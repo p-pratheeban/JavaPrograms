@@ -10,6 +10,12 @@ public class MirrorOfBinaryTree {
 			temp = root.left;
 			root.left = root.right;
 			root.right = temp;
+			/*
+			 Swap the left and the right child of each node.
+        	BinaryTreeNode temp = root.getLeft();
+        	root.setLeft(root.getRight());
+        	root.setRight(temp);
+			 */
 		}
 		return root;
 	}

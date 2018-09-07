@@ -28,7 +28,7 @@ public class Reverse {
 				i = j + 1;
 			}
 		}
-		
+
 		return String.valueOf(s);
 	}
 
@@ -39,17 +39,43 @@ public class Reverse {
 			s[end - i - 1] = temp;
 		}
 	}
-    public static String reverseString(String str) {
-    	String reverse = "";
-    	for (int i = 0; i < str.length(); i++) {
-			reverse =str.charAt(i)+reverse;
+
+	public static String reverseString(String str) {
+		String reverse = "";
+		for (int i = 0; i < str.length(); i++) {
+			reverse = str.charAt(i) + reverse;
 		}
-    	return reverse;
-    }
+		return reverse;
+	}
+
+	public static String reverseString1(String input) {
+		String reverseStr = "";
+		for (int i = input.length() - 1; i >= 0; i--) {
+			reverseStr += input.charAt(i);
+		}
+		return reverseStr;
+	}
+
+	public static String reverseString2(String input) {
+		if (input == null || input == "") {
+			return input;
+		}
+		String reverseStr = new StringBuffer(input).reverse().toString();
+		return reverseStr;
+	}
+
+	public static String reverseString3(String input) {
+		if (input.length() == 1 || input == null || input == "") {
+			return input;
+		}
+		return reverseString(input.substring(1)) + input.charAt(0);
+	}
+
 	public static void main(String[] args) {
 		String str = "the sky is blue";
 		System.out.println(reverseWords(str));
 		System.out.println(reverseWords(str.toCharArray()));
-		System.out.println(reverseString(str));
+		//System.out.println(reverseString(str));
+		System.out.println(reverseString3(str));
 	}
 }

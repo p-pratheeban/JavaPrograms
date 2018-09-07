@@ -1,5 +1,7 @@
 package com.pratheeban.tree;
 
+import java.util.List;
+
 public class PrintPaths {
 	public void printPaths(BinaryTreeNode root) {
 		int[] path = new int[256];
@@ -26,5 +28,21 @@ public class PrintPaths {
 			System.out.print(ints[i] + " ");
 		}
 		System.out.println();
+	}
+
+	public static void printPaths(BinaryTreeNode root, List<BinaryTreeNode> pathList) {
+		if (root == null) {
+			return;
+		}
+
+		pathList.add(root);
+		printPaths(root.getLeft(), pathList);
+		printPaths(root.getRight(), pathList);
+
+		if (root.getLeft() == null && root.getRight() == null) {
+			System.out.println(pathList.toString());
+		}
+
+		pathList.remove(root);
 	}
 }

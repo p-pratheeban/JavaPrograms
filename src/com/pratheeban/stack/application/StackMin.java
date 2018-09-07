@@ -2,6 +2,7 @@ package com.pratheeban.stack.application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 class GenStack<T> {
 	private List<T> stack;
@@ -24,8 +25,9 @@ class GenStack<T> {
 	public T peek() {
 		return stack.get(top);
 	}
+
 	public boolean isEmpty() {
-		return top==-1;
+		return top == -1;
 	}
 }
 
@@ -47,13 +49,13 @@ public class StackMin extends GenStack<NodeMin> {
 		NodeMin node = new NodeMin(val, min);
 		push(node);
 	}
-	
+
 	public int getMin() {
 		if (this.isEmpty()) {
-    		return Integer.MAX_VALUE;
-    	} else {
-		return peek().min;
-    	}
+			return Integer.MAX_VALUE;
+		} else {
+			return peek().min;
+		}
 	}
 
 	public static void main(String[] args) {
@@ -68,33 +70,34 @@ public class StackMin extends GenStack<NodeMin> {
 		}
 		System.out.println('\n');
 		for (int i = 0; i < array.length; i++) {
-			System.out.println("Popped " + stack.pop().val +"\t"+stack2.pop());
-			System.out.println("New min is " + stack.getMin()+"\t"+stack2.min());
+			System.out.println("Popped " + stack.pop().val + "\t" + stack2.pop());
+			System.out.println("New min is " + stack.getMin() + "\t" + stack2.min());
 		}
 	}
 }
+
 class StackMin2 extends GenStack<Integer> {
 	GenStack<Integer> s2;
-	
+
 	public StackMin2() {
-		s2 = new GenStack<Integer>();		
+		s2 = new GenStack<Integer>();
 	}
-	
-	public void push(int value){
+
+	public void push(int value) {
 		if (value <= min()) {
 			s2.push(value);
 		}
 		super.push(value);
 	}
-	
+
 	public Integer pop() {
 		int value = super.pop();
 		if (value == min()) {
-			s2.pop();			
+			s2.pop();
 		}
 		return value;
 	}
-	
+
 	public int min() {
 		if (s2.isEmpty()) {
 			return Integer.MAX_VALUE;
@@ -104,3 +107,28 @@ class StackMin2 extends GenStack<Integer> {
 	}
 }
 
+class MinimumStack {
+	private Stack<Integer> stack = new Stack<>();
+	private Stack<Integer> minimumStack = new Stack<>();
+
+	public void push(int data) {
+		int min = data;
+		if (!minimumStack.isEmpty()) {
+			if (min > minimumStack.peek()) {
+				min = minimumStack.peek();
+			}
+		}
+		stack.push(data);
+		minimumStack.push(min);
+	}
+
+	public int pop() {
+		minimumStack.pop();
+		return stack.pop();
+	}
+
+	public int getMinimum() {
+		return minimumStack.peek();
+	}
+
+}

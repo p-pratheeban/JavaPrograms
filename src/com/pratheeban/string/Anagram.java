@@ -1,6 +1,8 @@
 package com.pratheeban.string;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -190,7 +192,7 @@ public class Anagram {
 			Arrays.sort(wordArr);
 			String key = new String(wordArr);
 			List<String> list;
-			if (hm.containsKey(key) == false) {
+			if (!hm.containsKey(key)) {
 				list = new LinkedList<String>();
 			} else {
 				list = hm.get(key);
@@ -206,6 +208,39 @@ public class Anagram {
 		}
 	}
 
+	public static void sort(String[] array) {
+		Map<String, List<String>> mapList = new HashMap<>();
+
+		/* Group words by anagram */
+		for (String s : array) {
+			String key = sortChars(s);
+			List<String> list;
+			if (!mapList.containsKey(key)) {
+				list = new ArrayList<String>();
+			} else {
+				list = mapList.get(key);
+			}
+			list.add(s);
+			mapList.put(key, list);
+		}
+
+		/* Convert hash table to array */
+		int index = 0;
+		for (String key : mapList.keySet()) {
+			List<String> list = mapList.get(key);
+			for (String t : list) {
+				array[index] = t;
+				index++;
+			}
+		}
+	}
+
+	public static String sortChars(String s) {
+		char[] content = s.toCharArray();
+		Arrays.sort(content);
+		return new String(content);
+	}
+
 	public static void main(String[] args) {
 		System.out.println(isAnagram("word", "wrdo"));
 		System.out.println(isAnagrams("word", "wrdo"));
@@ -217,5 +252,22 @@ public class Anagram {
 		System.out.println(isAnagram1("word", "wrdo"));
 		bucketAnagram(Arrays.asList("abc", "hello", "cba"));
 
+		String[] array = { "apple", "banana", "carrot", "ele", "duck", "papel", "tarroc", "cudk", "eel", "lee" };
+		sort(array);
+		System.out.println(Arrays.toString(array));
+		Arrays.sort(array, new AnagramComparator());
+		System.out.println(Arrays.toString(array));
+	}
+}
+
+class AnagramComparator implements Comparator<String> {
+	private String sortChars(String s) {
+		char[] content = s.toCharArray();
+		Arrays.sort(content);
+		return new String(content);
+	}
+
+	public int compare(String s1, String s2) {
+		return sortChars(s1).compareTo(sortChars(s2));
 	}
 }

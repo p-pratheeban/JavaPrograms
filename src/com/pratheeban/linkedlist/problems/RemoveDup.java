@@ -107,6 +107,23 @@ public class RemoveDup {
 		}
 		return temp;
 	}
+	
+	//remove duplicate from sorted array
+	public static ListNode removeDuplicate2(ListNode head) {
+		ListNode temp = head;
+		ListNode prev = head;
+		ListNode curr= head.next;
+		while (curr != null) {
+			if(prev.data==curr.data) {
+				prev.next = curr.next;
+				curr= curr.next;
+				continue;
+			}
+			prev=curr;
+			curr=curr.next;
+		}
+		return temp;
+	}
 
 	public static void main(String[] args) {
 		/*
@@ -154,6 +171,18 @@ public class RemoveDup {
 		System.out.println(list2.printList(head2));
 		ListNode s5 = deleteDups(head2);
 		System.out.println(list2.printList(s5));
+		
+		LinkedList list3 = new LinkedList();
+		ListNode head3 = new ListNode(1);
+		list3.inserAtLast(head3);
+		list3.inserAtLast(new ListNode(2));
+		list3.inserAtLast(new ListNode(2));
+		list3.inserAtLast(new ListNode(2));
+		list3.inserAtLast(new ListNode(4));
+		list3.inserAtLast(new ListNode(5));
+		list3.inserAtLast(new ListNode(5));
+		ListNode s6 = removeDuplicate2(head3);
+		System.out.println(list3.printList(s6));
 
 	}
 }

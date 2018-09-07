@@ -28,7 +28,7 @@ public class InsertInBinaryTree {
 		}
 		return root;
 	}
-	
+
 	public void insert(BinaryTreeNode root, int data) {
 		if (root == null) {
 			root = new BinaryTreeNode(data);
@@ -38,7 +38,7 @@ public class InsertInBinaryTree {
 	}
 
 	private void insertHelper(BinaryTreeNode root, int data) {
-		if (root.data >= data) {	// It is not compulsory to put this check.
+		if (root.data >= data) { // It is not compulsory to put this check.
 			if (root.left == null) {
 				root.left = new BinaryTreeNode(data);
 			} else {
@@ -51,5 +51,18 @@ public class InsertInBinaryTree {
 				insertHelper(root.right, data);
 			}
 		}
+	}
+
+	public static BinaryTreeNode insert(BinaryTreeNode root, BinaryTreeNode node) {
+		if (root == null) {
+			return node;
+		}
+
+		if (node.getData() <= root.getData()) {
+			root.setLeft(insert(root.getLeft(), node));
+		} else {
+			root.setRight(insert(root.getRight(), node));
+		}
+		return root;
 	}
 }

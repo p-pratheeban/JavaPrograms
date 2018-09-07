@@ -5,15 +5,18 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class MaxDepthBinaryTree {
-	
-	//O(n) runtime, O(log n) space – Recursion
+
+	// O(n) runtime, O(log n) space – Recursion
 	public static int maxDepthRecursive(BinaryTreeNode root) {
 		if (root == null)
 			return 0;
+		if (root.getLeft() == null && root.getRight() == null) {
+			return 0;
+		}
 		/* compute the depth of each subtree */
 		int leftDepth = maxDepthRecursive(root.left);
 		int rightDepth = maxDepthRecursive(root.right);
-		return Math.max(leftDepth, rightDepth)+1;
+		return Math.max(leftDepth, rightDepth) + 1;
 	}
 
 	// Returns the depth of this binary tree. The depth of a binary tree is the
@@ -68,6 +71,7 @@ public class MaxDepthBinaryTree {
 		}
 		return maxDepth;
 	}
+
 	public static void main(String[] args) {
 		BinaryTreeNode root = BinaryTreeNode.createBinaryTree();
 		root.displayTree();

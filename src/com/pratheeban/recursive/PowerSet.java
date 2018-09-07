@@ -24,6 +24,29 @@ public class PowerSet {
 		return allsubsets;
 	}
 
+	public static void populateSubsets(List<List<Integer>> subsetList, List<Integer> numberList) {
+		if (numberList.isEmpty()) {
+			subsetList.add(new ArrayList<>());
+			return;
+		}
+
+		int currentNum = numberList.get(0);
+		numberList.remove(0);
+
+		populateSubsets(subsetList, numberList);
+
+		List<List<Integer>> iteratingList = new ArrayList<>();
+		iteratingList.addAll(subsetList);
+		for (List<Integer> subset : iteratingList) {
+			List<Integer> newSubset = new ArrayList<>();
+
+			newSubset.addAll(subset);
+			newSubset.add(currentNum);
+
+			subsetList.add(newSubset);
+		}
+	}
+
 	static ArrayList<ArrayList<Integer>> printPowerSet(List<Integer> set, int set_size) {
 		ArrayList<ArrayList<Integer>> allsubsets = new ArrayList<ArrayList<Integer>>();
 
@@ -63,6 +86,16 @@ public class PowerSet {
 
 		ArrayList<ArrayList<Integer>> subsets1 = printPowerSet(list, list.size());
 		System.out.println(subsets1.toString());
+
+		List<Integer> numberList = new ArrayList<>();
+		numberList.add(1);
+		numberList.add(2);
+		numberList.add(3);
+		numberList.add(4);
+
+		List<List<Integer>> subsetList = new ArrayList<>();
+		populateSubsets(subsetList, numberList);
+		System.out.println(subsetList.toString());
 
 	}
 }

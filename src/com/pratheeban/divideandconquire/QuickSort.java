@@ -10,20 +10,23 @@ public class QuickSort {
 	private static void quickSort(int[] array, int left, int right) {
 		if (left >= right)
 			return;
-		int pivot = array[(left + right) / 2];
+		int pivot = array[(left + right) / 2];// Pick a pivot point. Can be an element
 		int index = partion(array, left, right, pivot);
-		quickSort(array, left, index - 1);
-		quickSort(array, index, right);
+		quickSort(array, left, index - 1);// Sort left half
+		quickSort(array, index, right);// Sort right half
 	}
 
 	private static int partion(int[] array, int left, int right, int pivot) {
-		while (left <= right) {
+		while (left <= right) { // Until we've gone through the whole array
+			// Find element on left that should be on right
 			while (array[left] < pivot) {
 				left++;
 			}
+			// Find element on right that should be on left
 			while (array[right] > pivot) {
 				right--;
 			}
+			// Swap elements, and move left and right indices
 			if (left <= right) {
 				swap(array, left, right);
 				left++;

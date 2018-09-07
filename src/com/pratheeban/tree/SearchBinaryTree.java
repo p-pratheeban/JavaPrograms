@@ -48,6 +48,24 @@ public class SearchBinaryTree {
 		}
 	}
 
+	public static void printRange(BinaryTreeNode root, int low, int high) {
+		if (root == null) {
+			return;
+		}
+
+		if (low <= root.getData()) {
+			printRange(root.getLeft(), low, high);
+		}
+
+		if (low <= root.getData() && root.getData() <= high) {
+			System.out.println(root.getData());
+		}
+
+		if (high > root.getData()) {
+			printRange(root.getRight(), low, high);
+		}
+	}
+
 	public static BinaryTreeNode nextInOrder(BinaryTreeNode n) {
 		if (n == null) {
 			return null;

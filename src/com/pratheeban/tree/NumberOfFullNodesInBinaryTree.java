@@ -20,5 +20,5 @@ public class NumberOfFullNodesInBinaryTree {
 				q.offer(tmp.right);
 		}
 		return count;
-	}
+	} 
 }

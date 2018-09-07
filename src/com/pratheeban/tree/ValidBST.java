@@ -88,6 +88,19 @@ public class ValidBST {
 		return false;
 	}
 
+	public static boolean isBinarySearchTree(BinaryTreeNode root, int min, int max) {
+		if (root == null) {
+			return true;
+		}
+
+		if (root.getData() <= min || root.getData() > max) {
+			return false;
+		}
+
+		return isBinarySearchTree(root.getLeft(), min, root.getData())
+				&& isBinarySearchTree(root.getRight(), root.getData(), max);
+	}
+
 	public static boolean isValidBST(BinaryTreeNode root) {
 		prev = null;
 		return isMonotonicIncreasing(root);

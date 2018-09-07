@@ -21,6 +21,31 @@ public class MergeList {
 		temp.next = (l1 == null) ? l2 : l1;
 		return head.next;
 	}
+	
+	public static ListNode merge2(ListNode l1, ListNode l2) {
+		ListNode head = null;
+		if(l1.data<l2.data) {
+			head = l1;
+			l1 = l1.next;
+		}else {
+			head = l2;
+			l2 = l2.next;
+		}
+		head.next = null;
+		ListNode current = head;
+		while (l1 != null && l2 != null) {
+			if (l1.data < l2.data) {
+				current.next = l1;
+				l1 = l1.next;
+			} else {
+				current.next = l2;
+				l2 = l2.next;
+			}
+			current = current.next;
+		}
+		current.next = (l1 == null) ? l2 : l1;
+		return head;
+	}
 
 	public static ListNode merge1(ListNode l1, ListNode l2) {
 		ListNode result = null;
@@ -78,7 +103,9 @@ public class MergeList {
 		list3.inserAtLast(new ListNode(43));
 		list3.inserAtLast(new ListNode(59));
 		System.out.println("Merge II");
-		ListNode node1 = merge1(head2, head3);
+		//ListNode node1 = merge1(head2, head3);
+		//System.out.println(list1.printList(node1));
+		ListNode node1 = merge2(head2, head3);
 		System.out.println(list1.printList(node1));
 
 	}

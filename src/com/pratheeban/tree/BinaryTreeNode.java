@@ -67,7 +67,7 @@ public class BinaryTreeNode {
 			return right.getRandomNode();
 		}
 	}
-	
+
 	public BinaryTreeNode getIthNode(int i) {
 		int leftSize = left == null ? 0 : left.size();
 		if (i < leftSize) {
@@ -124,6 +124,19 @@ public class BinaryTreeNode {
 		return left == null && right == null;
 	}
 
+	public static BinaryTreeNode insert(BinaryTreeNode root, BinaryTreeNode node) {
+		if (root == null) {
+			return node;
+		}
+
+		if (node.getData() <= root.getData()) {
+			root.setLeft(insert(root.getLeft(), node));
+		} else {
+			root.setRight(insert(root.getRight(), node));
+		}
+		return root;
+	}
+
 	// Tests whether the root argument contains within itself the data argument.
 	public static boolean findInBT(BinaryTreeNode root, int data) {
 		if (root == null)
@@ -152,18 +165,12 @@ public class BinaryTreeNode {
 
 	// Computes a hash code for the complete binary tree rooted at this
 	// BinaryTreeNode node.
-	/*public int hashCode() {
-		int result = this.hashCode();
-		if (left != null) {
-			result += 3 * left.hashCode();
-		}
-		if (right != null) {
-			result += 7 * right.hashCode();
-		}
-		return result;
-	}
-*/
-	
+	/*
+	 * public int hashCode() { int result = this.hashCode(); if (left != null) {
+	 * result += 3 * left.hashCode(); } if (right != null) { result += 7 *
+	 * right.hashCode(); } return result; }
+	 */
+
 	// Returns the total number of nodes in this binary tree (include the root in
 	// the count).
 	public int numberOfNodes() {
