@@ -32,7 +32,7 @@ public class NearestClone {
 		List<Node> vertexes;
 
 		public Graph() {
-			vertexes = new ArrayList();
+			vertexes = new ArrayList<>();
 
 		}
 

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Isomorphic {
+	
 	public static Character getKey(Map<Character, Character> map, Character c) {
 		for (Map.Entry<Character, Character> entry : map.entrySet()) {
 			if (entry.getValue().equals(c)) {
@@ -38,8 +39,9 @@ public class Isomorphic {
 		System.out.println(map);
 		return true;
 	}
+
 	public static void main(String[] args) {
-		 System.out.println(isIsomorphic("egg", "add"));
+		System.out.println(isIsomorphic("egg", "add"));
 		System.out.println(isIsomorphic("egg", "adt"));
 
 	}

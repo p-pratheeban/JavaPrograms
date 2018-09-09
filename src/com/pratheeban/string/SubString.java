@@ -108,7 +108,7 @@ public class SubString {
 		}
 		s11.retainAll(s22);
 		System.out.println(s11);
-		return s1.isEmpty()?"NO":"YES";
+		return s11.isEmpty()?"NO":"YES";
 	}
 
 	

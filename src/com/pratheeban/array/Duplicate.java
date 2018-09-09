@@ -72,7 +72,7 @@ public class Duplicate {
 	public static boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
 		if (k < 1 || t < 0)
 			return false;
-		TreeSet<Integer> set = new TreeSet<Integer>();
+		TreeSet<Integer> set = new TreeSet<>();
 		for (int i = 0; i < nums.length; i++) {
 			int c = nums[i];
 			if ((set.floor(c) != null && c <= set.floor(c) + t) || (set.ceiling(c) != null && c >= set.ceiling(c) - t))
@@ -87,16 +87,16 @@ public class Duplicate {
 	public static boolean containsNearbyAlmostDuplicate1(int[] nums, int k, int t) {
 		if (k < 1 || t < 0)
 			return false;
-		SortedSet<Long> set = new TreeSet<Long>();
+		SortedSet<Integer> set = new TreeSet<>();
 		for (int j = 0; j < nums.length; j++) {
-			long leftBoundary = (long) nums[j] - t;
-			long rightBoundary = (long) nums[j] + t + 1;
-			SortedSet<Long> subSet = set.subSet(leftBoundary, rightBoundary);
+			int leftBoundary = nums[j] - t;
+			int rightBoundary = nums[j] + t + 1;
+			SortedSet<Integer> subSet = set.subSet(leftBoundary, rightBoundary);
 			if (!subSet.isEmpty())
 				return true;
-			set.add((long) nums[j]);
+			set.add(nums[j]);
 			if (j >= k) {
-				set.remove((long) nums[j - k]);
+				set.remove(nums[j - k]);
 			}
 		}
 		return false;
@@ -107,7 +107,7 @@ public class Duplicate {
 	 * appear only once and return the new length. Do not allocate extra space for
 	 * another array, you must do this in place with constant memory.
 	 */
-	public static int removeDuplicatesNaive(int[] A) {
+	public static int removeDuplicates(int[] A) {
 		if (A.length < 2)
 			return A.length;
 		int j = 0;
@@ -125,8 +125,21 @@ public class Duplicate {
 		return j + 1;
 	}
 
+	public static int removeDuplicates1(int[] A) {
+		if (A.length < 2)
+			return A.length;
+		int j = 1;
+		for (int i = 1; i <= A.length - 1; i++) {
+			if (A[i - 1] != A[i]) {
+				A[j++] = A[i];
+			}
+		}
+		System.out.println(Arrays.toString(A));
+		return j;
+	}
+
 	// Create an array with all unique elements
-	public static int[] removeDuplicates(int[] A) {
+	public static int[] removeDuplicates2(int[] A) {
 		if (A.length < 2)
 			return A;
 		int j = 0;
@@ -167,16 +180,19 @@ public class Duplicate {
 		System.out.println(containsNearbyDuplicate1(a1, 2));
 		int a2[] = { 4, 1, 6, 3, 4, 3 };
 
-		System.out.println(containsNearbyAlmostDuplicate(a2, 1, 1));
+		System.out.println(containsNearbyAlmostDuplicate(a2, 3, 2));
 		System.out.println(containsNearbyAlmostDuplicate1(a2, 1, 1));
-		int a3[] = { 1, 1, 2, 3, 3, 3 };
+		int a3[] = { 0, 1, 1, 2, 3, 3, 3, 4 };
 
-		System.out.println(removeDuplicatesNaive(a3));
+		System.out.println(removeDuplicates(a3));
 		int a4[] = { 1, 1, 2, 3, 3, 3 };
 
-		int a5[] = removeDuplicates(a4);
+		int a5[] = removeDuplicates2(a4);
 		System.out.println(Arrays.toString(a5));
 		System.out.println(countUnique(a4));
+
+		int a6[] = { 0, 1, 1, 2, 3, 3, 3, 4, 5 };
+		System.out.println(removeDuplicates1(a6));
 
 	}
 

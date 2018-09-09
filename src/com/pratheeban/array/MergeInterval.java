@@ -28,6 +28,10 @@ public class MergeInterval {
 		int end = first.end;
 
 		for (Interval inter : in) {
+			if (inter.start > start) {
+				start = inter.start;
+				end = inter.end;
+			}
 			if (inter.end > end) {
 				end = inter.end;
 			}
@@ -62,7 +66,7 @@ public class MergeInterval {
 		input.add(new Interval(1, 3));
 		input.add(new Interval(5, 10));
 		input.add(new Interval(9, 31));
-		input.add(new Interval(12, 30));
+		input.add(new Interval(32, 40));
 		List<Interval> output = mergeIntervals(input);
 		System.out.println(output);
 		List<Interval> output1 = mergeIntervals1(input);

@@ -7,24 +7,24 @@ import java.util.Map;
 import java.util.Set;
 
 public class TwoSum {
-	
+
 	private static Map<Integer, Integer> table = new HashMap<>();
 
-	
 	// O(n) runtime, O(n) space
 	public static int[] twoSum(int[] nums, int target) {
 		int result[] = new int[2];
 		Set<Integer> s = new HashSet<>();
-		for (int n : nums) {
-			s.add(n);
-		}
+
 		for (int n : nums) {
 			int k = target - n;
 			if (s.contains(k) && k != n) {
 				result[0] = n;
 				result[1] = target - n;
 				break;
+			} else {
+				s.add(n);
 			}
+
 		}
 		return result;
 
@@ -34,13 +34,14 @@ public class TwoSum {
 	public static int[] twoSum1(int[] nums, int target) {
 		Map<Integer, Integer> s = new HashMap<>();
 		int j = 0;
-		for (int n : nums) {
-			s.put(n, j++);
-		}
+
 		for (int i = 0; i < nums.length; i++) {
 			int k = target - nums[i];
 			if (s.containsKey(k) && s.get(k) != i) {
 				return new int[] { i, s.get(k) };
+			} else {
+				s.put(nums[i], i);
+
 			}
 		}
 		throw new IllegalArgumentException("No two sum solution");
@@ -98,16 +99,16 @@ public class TwoSum {
 	}
 
 	private static int bsearch(int[] A, int key, int start) {
-		int L = start, R = A.length - 1;
-		while (L < R) {
-			int M = (L + R) / 2;
-			if (A[M] < key) {
-				L = M + 1;
+		int l = start, r = A.length - 1;
+		while (l <= r) {
+			int m = (l + r) / 2;
+			if (A[m] < key) {
+				l = m + 1;
 			} else {
-				R = M;
+				r = m;
 			}
 		}
-		return (L == R && A[L] == key) ? L : -1;
+		return (l == l && A[l] == key) ? l : -1;
 	}
 
 	// O(n) runtime, O(1) space – Two pointers
@@ -127,7 +128,8 @@ public class TwoSum {
 		throw new IllegalArgumentException("No two sum solution");
 	}
 
-	//add – O(1) runtime, find – O(n) runtime, O(n) space – Store input in hash table
+	// add – O(1) runtime, find – O(n) runtime, O(n) space – Store input in hash
+	// table
 	public void add(int input) {
 		int count = table.containsKey(input) ? table.get(input) : 0;
 		table.put(input, count + 1);

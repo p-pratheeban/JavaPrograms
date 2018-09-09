@@ -24,6 +24,12 @@ public class RotateArray {
 
 	}
 
+	public static void swap(int arr[], int i, int j) {
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+
 	public static void rotate1(int arr[], int k) {
 		int n = arr.length;
 		if (arr == null || k < 0) {
@@ -31,9 +37,7 @@ public class RotateArray {
 		}
 		for (int i = 0; i < k; i++) {
 			for (int j = n - 1; j > 0; j--) {
-				int temp = arr[j];
-				arr[j] = arr[j - 1];
-				arr[j - 1] = temp;
+				swap(arr, j, j - 1);
 			}
 		}
 
@@ -48,11 +52,12 @@ public class RotateArray {
 		if (order > arr.length) {
 			order = order % arr.length;
 		}
+		// a = [1, 2, 3, 4, 5, 6, 7]
 		// length of first part
 		int a = arr.length - order;
-		reverse(arr, 0, a - 1);
-		reverse(arr, a, arr.length - 1);
-		reverse(arr, 0, arr.length - 1);
+		reverse(arr, 0, a - 1);// [4, 3, 2, 1, 5, 6, 7]
+		reverse(arr, a, arr.length - 1);// [4, 3, 2, 1, 7, 6, 5]
+		reverse(arr, 0, arr.length - 1);// [5, 6, 7, 1, 2, 3, 4]
 		System.out.println(Arrays.toString(arr));
 
 	}
@@ -61,9 +66,7 @@ public class RotateArray {
 		if (arr == null || arr.length == 1)
 			return;
 		while (left < right) {
-			int temp = arr[left];
-			arr[left] = arr[right];
-			arr[right] = temp;
+			swap(arr, left, right);
 			left++;
 			right--;
 		}

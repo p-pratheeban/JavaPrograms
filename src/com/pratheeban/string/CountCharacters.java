@@ -40,10 +40,9 @@ public class CountCharacters {
 
 	public static int countOccurrence(String input, char c) {
 		int len = input.length();
-		if ((len == 0) || (c == '\0')) // obvious case for empty string or nil
-										// char.
+		if ((len == 0) || (c == '\0')) { // obvious case for empty string or nil char.
 			return 0; // Your recursion always ends here
-
+		}
 		String rest = input.substring(1);
 		if (input.charAt(0) == c) {
 			return countOccurrence(rest, c) + 1; // recurse on substring
@@ -57,7 +56,7 @@ public class CountCharacters {
 		System.out.println(countOccurrencesOf(input, 'a'));
 		System.out.println(countOccurrences(input, 'a'));
 		System.out.println(countOccurrences(input));
-		System.out.println(countOccurrence(input,'a'));
+		System.out.println(countOccurrence(input, 'a'));
 
 	}
 }

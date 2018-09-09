@@ -2,7 +2,6 @@ package com.pratheeban.string;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class WordFrequency {
 	public static int getFrequency(String[] book, String word) {

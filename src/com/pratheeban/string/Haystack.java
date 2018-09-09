@@ -2,7 +2,7 @@ package com.pratheeban.string;
 
 public class Haystack {
 
-	//T(n)=O(m+n)
+	// T(n)=O(m+n)
 	public static int strStr(String haystack, String needle) {
 		for (int i = 0;; i++) {
 			for (int j = 0;; j++) {
@@ -26,31 +26,31 @@ public class Haystack {
 		int index = haystack.indexOf(needle);
 		int index1 = -len1;
 		int i = 0;
-		while (haystack.length()>len1) {
+		while (haystack.length() > len1) {
 			if (numberOfOccurences == nthoccur) {
 				break;
 			}
 			if (index != -1) {
 				numberOfOccurences++;
-				index1+=len1;
+				index1 += len1;
 				haystack = haystack.substring(len1);
 			}
-			
+
 			index = haystack.indexOf(needle);
 			i++;
 		}
 		return index1;
 	}
 
-	//O(nm) runtime, O(1) space – Brute force
+	// O(nm) runtime, O(1) space – Brute force
 	public static int strStr3(String haystack, String needle, int nthoccur) {
-		int count=0;
+		int count = 0;
 		for (int i = 0;; i++) {
-			for (int j = 0;j<needle.length(); j++) {
-				if (j == needle.length()-1) {
+			for (int j = 0; j < needle.length(); j++) {
+				if (j == needle.length() - 1) {
 					count++;
 				}
-				if(count==nthoccur) {
+				if (count == nthoccur) {
 					return i;
 				}
 				if (i + j == haystack.length())

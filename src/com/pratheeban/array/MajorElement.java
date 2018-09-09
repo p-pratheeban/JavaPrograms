@@ -91,7 +91,7 @@ public class MajorElement {
 		System.out.println(findMajElement(arr));
 		System.out.println(findMajElement1(arr));
 
-		int arr1[] = { 2, 3, 3, 1, 3, 2, 4, 5, 6, };
+		int arr1[] = { 2, 3, 3, 1, 3, 2, 4, 5, 6, 1};
 		System.out.println(findMajElement(arr1));
 		System.out.println(findMajElement1(arr1));
 
