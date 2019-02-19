@@ -1,10 +1,12 @@
-package com.pratheeban.graph.bfs;
+package com.pratheeban.graph.dfs;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Creating an undirected graph. Finding path from source to destination in
@@ -15,10 +17,10 @@ import java.util.List;
  * 
  *
  */
-public class GraphExample {
+public class HasPath {
 
 	// HashMap will store graph information
-	private HashMap<Integer, Node> nodeLookup = new HashMap<>();
+	private Map<Integer, Node> nodeLookup = new HashMap<>();
 
 	// First requirement is Node class
 	public static class Node {
@@ -67,12 +69,12 @@ public class GraphExample {
 	public boolean hasPathDFS(int source, int destination) {
 		Node s = getNode(source);
 		Node d = getNode(destination);
-		HashSet<Integer> visited = new HashSet<>();
+		Set<Integer> visited = new HashSet<>();
 		return hasPathDFS(s, d, visited);
 	}
 
 	// source : node we are currently at or starting with
-	private boolean hasPathDFS(Node source, Node destination, HashSet<Integer> visited) {
+	private boolean hasPathDFS(Node source, Node destination, Set<Integer> visited) {
 		// Reached at source again : found cycle
 		if (visited.contains(source.id)) {
 			return false;
@@ -127,7 +129,7 @@ public class GraphExample {
 
 	public static void main(String[] args) {
 
-		GraphExample graphExample = new GraphExample();
+		HasPath graphExample = new HasPath();
 		// Creating graph shown in example
 		graphExample.createGraph();
 

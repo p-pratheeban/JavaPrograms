@@ -15,7 +15,7 @@ class PrimeNumber {
 		if (n <= 1) {
 			return false;
 		}
-		for (int i = 2; i < Math.sqrt(n); i++) {
+		for (int i = 2; i <= Math.sqrt(n); i++) {
 			if (n % i == 0) {
 				return false;
 			}
@@ -34,7 +34,7 @@ class PrimeNumber {
 	public static void main(String args[]) {
 
 		PrimeNumber primeNumber = new PrimeNumber();
-		primeNumber.printMessage(6);
+		primeNumber.printMessage(4);
 		primeNumber.printMessage(13);
 	}
 }

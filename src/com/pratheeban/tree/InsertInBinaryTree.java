@@ -12,8 +12,8 @@ public class InsertInBinaryTree {
 		while (!q.isEmpty()) {
 			BinaryTreeNode tmp = q.poll();
 			if (tmp != null) {
-				if (tmp.getLeft() != null)
-					q.offer(tmp.getLeft());
+				if (tmp.left != null)
+					q.offer(tmp.left);
 				else {
 					tmp.left = new BinaryTreeNode(data);
 					return root;
@@ -42,7 +42,7 @@ public class InsertInBinaryTree {
 			if (root.left == null) {
 				root.left = new BinaryTreeNode(data);
 			} else {
-				insertHelper(root.right, data);
+				insertHelper(root.left, data);
 			}
 		} else {
 			if (root.right == null) {

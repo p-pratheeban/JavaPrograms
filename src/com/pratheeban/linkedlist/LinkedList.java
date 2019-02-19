@@ -14,6 +14,7 @@ public class LinkedList {
 	}
 
 	public void inserAtBegin(ListNode node) {
+		
 		node.setNext(head);
 		head = node;
 		length++;
@@ -164,7 +165,7 @@ public class LinkedList {
 		}
 		return result + "]";
 	}
-//[15,6,16,7,1,2]
+//[15,6,7,16,7,1,2]
 
 	public boolean ifLoopExist() {
 		ListNode fastPtr = head;
@@ -178,17 +179,52 @@ public class LinkedList {
 		}
 		return false;
 	}
+	
+	public void detectAndRemoveLoop() {
+		// If list is empty or has only one node 
+        // without loop 
+        if (head == null || head.next == null) 
+            return; 
+  
+        ListNode slow = head, fast = head; 
+  
+        // Move slow and fast 1 and 2 steps 
+        // ahead respectively. 
+        slow = slow.next; 
+        fast = fast.next.next; 
+  
+        // Search for loop using slow and fast pointers 
+        while (fast != null && fast.next != null) { 
+            if (slow == fast)  
+                break; 
+              
+            slow = slow.next; 
+            fast = fast.next.next; 
+        } 
+  
+        /* If loop exists */
+        if (slow == fast) { 
+            slow = head; 
+            while (slow.next != fast.next) { 
+                slow = slow.next; 
+                fast = fast.next; 
+            } 
+  
+            /* since fast->next is the looping point */
+            fast.next = null; /* remove loop */
+        } 
+	}
 
 	public ListNode nthFromLastNode(ListNode head, int n) {
 		ListNode firstPtr = head;
 		ListNode secondPtr = head;
 
 		for (int i = 0; i < n; i++) {
-			firstPtr = firstPtr.next;
+ 			firstPtr = firstPtr.next;
 
 		}
 
-		while (firstPtr != null) {
+		while (firstPtr != null) { 
 			firstPtr = firstPtr.next;
 			secondPtr = secondPtr.next;
 		}

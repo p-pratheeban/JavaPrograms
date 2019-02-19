@@ -23,10 +23,10 @@ public class MinimumBinaryTree {
 			return Integer.MIN_VALUE;
 		}
 
-		if (root.getLeft() == null) {
+		if (root.left == null) {
 			return root.getData();
 		}
 
-		return minimumValue(root.getLeft());
+		return minimumValue(root.left);
 	}
 }

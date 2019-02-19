@@ -12,13 +12,13 @@ public class NumberOfFullNodesInBinaryTree {
 		q.offer(root);
 		while (!q.isEmpty()) {
 			BinaryTreeNode tmp = q.poll();
-			if (tmp.getLeft() != null && tmp.getRight() != null)
+			if (tmp.left != null && tmp.right != null)
 				count++;
 			if (tmp.getLeft() != null)
-				q.offer(tmp.getLeft());
+				q.offer(tmp.left);
 			if (tmp.right != null)
 				q.offer(tmp.right);
 		}
 		return count;
-	} 
+	}
 }

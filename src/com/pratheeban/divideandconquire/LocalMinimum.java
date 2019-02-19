@@ -25,7 +25,7 @@ public class LocalMinimum {
 	}
 
 	public static void main(String[] args) {
-		int arr[] = { 9, 7, 2, 8, 5, 6, 3, 4 };
+		int arr[] = { 9, 7, 8, 8, 5, 6, 3, 4 };
 		System.out.println(findLocalMin(arr, 0, arr.length - 1));
 		System.out.println(findLocalMin1(arr, 0, arr.length - 1));
 	}

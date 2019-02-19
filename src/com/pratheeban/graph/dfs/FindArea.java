@@ -1,4 +1,4 @@
-package com.pratheeban.array;
+package com.pratheeban.graph.dfs;
 
 /*
  * Given a 2D array of integers and a starting point, find the continuous area covered with the

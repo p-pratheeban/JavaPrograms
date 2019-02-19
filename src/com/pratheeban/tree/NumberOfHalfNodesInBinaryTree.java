@@ -12,10 +12,10 @@ public class NumberOfHalfNodesInBinaryTree {
 		q.offer(root);
 		while (!q.isEmpty()) {
 			BinaryTreeNode tmp = q.poll();
-			if ((tmp.getLeft() == null && tmp.getRight() != null) || (tmp.getLeft() != null && tmp.getRight() == null))
+			if ((tmp.left == null && tmp.right != null) || (tmp.left != null && tmp.right == null))
 				count++;
-			if (tmp.getLeft() != null)
-				q.offer(tmp.getLeft());
+			if (tmp.left != null)
+				q.offer(tmp.left);
 			if (tmp.right != null)
 				q.offer(tmp.right);
 		}

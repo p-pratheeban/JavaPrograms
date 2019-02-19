@@ -184,6 +184,32 @@ public class Anagram {
 			return false;
 		return true;
 	}
+	
+	 static boolean isAnagram2(String a, String b) {
+	        if (a == null || b == null || a.length() != b.length()) {
+	            return false;
+	        }
+	        a = a.toLowerCase();
+	        b = b.toLowerCase();
+	        Map<Character, Integer> map = new HashMap<>();
+	        
+	        /* Fill HashMap with 1st String */
+	        for (int i = 0; i < a.length(); i++) {
+	            char ch = a.charAt(i);
+	            map.merge(ch, 1, Integer::sum);
+	        }
+	        
+	        /* Compare 2nd String to 1st String's HashMap */
+	        for (int i = 0; i < b.length(); i++) {
+	            char ch = b.charAt(i);
+	            if (map.containsKey(ch) && map.get(ch) > 0) {
+	                map.put(ch, map.get(ch) - 1);
+	            } else {
+	                return false;
+	            }
+	        }
+	        return true;
+	    }
 
 	public static void bucketAnagram(List<String> input) {
 		Map<String, List<String>> hm = new HashMap<>();
@@ -239,6 +265,31 @@ public class Anagram {
 		char[] content = s.toCharArray();
 		Arrays.sort(content);
 		return new String(content);
+	}
+
+	private static int numberNeeded(String first, String second) {
+		/* For each string, create an array of the count of each character */
+		int[] array1 = createFilledArray(first);
+		int[] array2 = createFilledArray(second);
+
+		/*
+		 * Count number of deletions we need to make the Strings anagrams of each other
+		 */
+		int deletions = 0;
+		for (int i = 0; i < 26; i++) {
+			deletions += Math.abs(array1[i] - array2[i]);
+		}
+		return deletions;
+	}
+
+	/* Creates an array with the count of each character */
+	private static int[] createFilledArray(String str) {
+		int[] array = new int[26];
+		for (int i = 0; i < str.length(); i++) {
+			char ch = str.charAt(i);
+			array[ch - 'a']++;
+		}
+		return array;
 	}
 
 	public static void main(String[] args) {

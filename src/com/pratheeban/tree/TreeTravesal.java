@@ -258,6 +258,24 @@ public class TreeTravesal {
 		}
 	}
 
+	public static void bfs(BinaryTreeNode root) {
+		if (root == null) {
+			return;
+		}
+		Queue<BinaryTreeNode> queue = new LinkedList<>();
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			BinaryTreeNode node = queue.remove();
+			System.out.println(node.data);
+			if (node.left != null) {
+				queue.add(node.left);
+			}
+			if (node.right != null) {
+				queue.add(node.right);
+			}
+		}
+	}
+
 	public static void levelOderTravesal(BinaryTreeNode root) {
 		Queue<BinaryTreeNode> q1 = new LinkedList<>();
 		q1.add(root);
@@ -310,8 +328,8 @@ public class TreeTravesal {
 		Queue<BinaryTreeNode> curLevel = new LinkedList<>();
 		Queue<BinaryTreeNode> nextLevel = new LinkedList<>();
 		curLevel.add(root);
-		while (curLevel.isEmpty() == false) {
-			while (curLevel.isEmpty() == false) {
+		while (!curLevel.isEmpty()) {
+			while (!curLevel.isEmpty()) {
 				BinaryTreeNode curNode = curLevel.poll();
 				System.out.print(curNode.data + " ");
 				if (curNode.left != null) {
@@ -337,7 +355,7 @@ public class TreeTravesal {
 		minMax[0] = Math.min(minMax[0], hd);
 		minMax[1] = Math.max(minMax[1], hd);
 		List<Integer> curHdLevel;
-		if (hm.containsKey(hd) == true) {
+		if (hm.containsKey(hd)) {
 			curHdLevel = hm.get(hd);
 		} else {
 			curHdLevel = new LinkedList<Integer>();

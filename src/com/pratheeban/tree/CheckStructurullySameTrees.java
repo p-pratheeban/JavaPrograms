@@ -6,7 +6,7 @@ public class CheckStructurullySameTrees {
 			return true;
 		if (root1 == null || root2 == null)
 			return false;
-		return (checkStructurullySameTrees(root1.getLeft(), root2.right)
-				&& checkStructurullySameTrees(root1.right, root2.getLeft()));
+		return (checkStructurullySameTrees(root1.left, root2.right)
+				&& checkStructurullySameTrees(root1.right, root2.left));
 	}
 }

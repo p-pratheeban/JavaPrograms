@@ -21,7 +21,7 @@ public class NonRepeatCharacter {
     public static char getFirstNonRepeatedChar(String str) {
     	Map<Character,Integer> counts = new LinkedHashMap<>(str.length());
     	for(char c:str.toCharArray()){
-    		counts.put(c, counts.containsKey(c)?counts.get(c)+1:1);
+    		counts.merge(c, 1, Integer::sum);
     	}
     	for (Entry<Character,Integer> entry : counts.entrySet()) {
             if (entry.getValue() == 1) {
@@ -70,11 +70,12 @@ public class NonRepeatCharacter {
         // build table [char -> count]
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (scoreboard.containsKey(c)) {
+           /* if (scoreboard.containsKey(c)) {
                 scoreboard.put(c, scoreboard.get(c) + 1);
             } else {
                 scoreboard.put(c, 1);
-            }
+            }*/
+            scoreboard.merge(c, 1, Integer::sum);
         }
         // since HashMap doesn't maintain order, going through string again
         for (int i = 0; i < word.length(); i++) {

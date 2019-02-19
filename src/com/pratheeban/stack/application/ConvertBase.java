@@ -32,6 +32,7 @@ class ConvertBase extends ArrayStack {
 				ele = 'F';
 			else
 				ele = ele;
+			System.out.println(ele);
 			push(ele);
 			n = n / b;
 		}

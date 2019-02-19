@@ -2,6 +2,7 @@ package com.pratheeban.string;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class SubString {
@@ -40,7 +41,7 @@ public class SubString {
 			return 0;
 		char[] arr = s.toCharArray();
 		int pre = 0;
-		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+		Map<Character, Integer> map = new HashMap<Character, Integer>();
 		for (int i = 0; i < arr.length; i++) {
 			if (!map.containsKey(arr[i])) {
 				map.put(arr[i], i);

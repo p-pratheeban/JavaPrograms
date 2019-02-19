@@ -1,6 +1,5 @@
 package com.pratheeban.graph.dfs;
 
-import java.util.Iterator;
 import java.util.Stack;
 
 import com.pratheeban.graph.Graph1;

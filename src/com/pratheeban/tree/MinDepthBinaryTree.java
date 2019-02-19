@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class MinDepthBinaryTree {
-	//O(n) runtime, O(n) space – Breadth-first traversal
+	// O(n) runtime, O(n) space – Breadth-first traversal
 	public static int minDepth(BinaryTreeNode root) {
 		if (root == null)
 			return 0;
@@ -15,11 +15,11 @@ public class MinDepthBinaryTree {
 		while (!q.isEmpty()) {
 			BinaryTreeNode currentNode = q.poll();
 			if (currentNode != null) {
-				if (currentNode.getLeft() == null && currentNode.right == null) {
+				if (currentNode.left == null && currentNode.right == null) {
 					return count;
 				}
-				if (currentNode.getLeft() != null) {
-					q.offer(currentNode.getLeft());
+				if (currentNode.left != null) {
+					q.offer(currentNode.left);
 				}
 				if (currentNode.right != null) {
 					q.offer(currentNode.right);
@@ -33,7 +33,8 @@ public class MinDepthBinaryTree {
 		}
 		return count;
 	}
-	//O(n) runtime, O(log n) space – Depth-first traversal:
+
+	// O(n) runtime, O(log n) space – Depth-first traversal:
 	public static int minDepth1(BinaryTreeNode root) {
 		if (root == null)
 			return 0;
@@ -43,7 +44,7 @@ public class MinDepthBinaryTree {
 			return minDepth1(root.left) + 1;
 		return Math.min(minDepth1(root.left), minDepth1(root.right)) + 1;
 	}
-	
+
 	public static void main(String[] args) {
 		BinaryTreeNode root = BinaryTreeNode.createBinaryTree();
 		root.displayTree();

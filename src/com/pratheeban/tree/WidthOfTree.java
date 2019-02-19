@@ -11,7 +11,7 @@ public class WidthOfTree {
 			if (tmp > max)
 				max = tmp;
 		}
-		return max;
+ 		return max;
 	}
 
 	// Returns the number of node on a given level

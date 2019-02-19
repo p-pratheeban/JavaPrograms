@@ -25,7 +25,7 @@ public class Graph {
 	public void addVertex(char lab) // argument is label
 	{
 		vertexList[nVerts++] = new Vertex(lab);
-	}
+	} 
 	public void addVertex(char lab, int id) // argument is label
 	{
 		vertexList[nVerts++] = new Vertex(lab,id);

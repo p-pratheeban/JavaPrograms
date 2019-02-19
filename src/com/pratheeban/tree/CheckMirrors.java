@@ -9,6 +9,6 @@ public class CheckMirrors {
 		if (root1.data != root2.data)
 			return false;
 		else
-			return (areMirrors(root1.getLeft(), root2.right) && areMirrors(root1.right, root2.getLeft()));
+			return (areMirrors(root1.getLeft(), root2.getRight()) && areMirrors(root1.getRight(), root2.getLeft()));
 	}
 }

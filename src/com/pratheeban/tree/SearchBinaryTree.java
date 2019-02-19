@@ -19,12 +19,12 @@ public class SearchBinaryTree {
 		q.offer(root);
 		while (!q.isEmpty()) {
 			BinaryTreeNode tmp = q.poll();
-			if (tmp.getData() == data) {
+			if (tmp.data == data) {
 				return true;
 			}
 			if (tmp != null) {
 				if (tmp.getLeft() != null)
-					q.offer(tmp.getLeft());
+					q.offer(tmp.left);
 				if (tmp.right != null)
 					q.offer(tmp.right);
 			}

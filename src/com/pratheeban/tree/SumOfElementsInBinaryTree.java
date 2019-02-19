@@ -13,15 +13,18 @@ public class SumOfElementsInBinaryTree {
 		while (!q.isEmpty()) {
 			BinaryTreeNode tmp = q.poll();
 			sum += tmp.data;
-			if (tmp.getLeft() != null)
-				q.offer(tmp.getLeft());
+			if (tmp.left != null)
+				q.offer(tmp.left);
 			if (tmp.right != null)
 				q.offer(tmp.right);
 		}
 		return sum;
 	}
-	public int addBT(BinaryTreeNode  root) {
-		if(root == null) return 0;
-		else return(root.getData() + addBT(root.getLeft()) +  addBT(root.getRight()));
+
+	public int addBT(BinaryTreeNode root) {
+		if (root == null)
+			return 0;
+		else
+			return (root.getData() + addBT(root.getLeft()) + addBT(root.getRight()));
 	}
 }

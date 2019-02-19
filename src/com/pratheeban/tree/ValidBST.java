@@ -123,6 +123,26 @@ public class ValidBST {
 		return checkBST(n, null, null);
 	}
 
+	public static boolean isBST(BinaryTreeNode node) {
+		return isBstHelper(node, null, null);
+	}
+
+	public static boolean isBstHelper(BinaryTreeNode node, Integer lowerLim, Integer upperLim) {
+		if (lowerLim != null && node.data < lowerLim)
+			return false;
+		if (upperLim != null && upperLim < node.data)
+			return false;
+		boolean isLeftBST = true;
+		boolean isRightBST = true;
+		if (node.left != null) {
+			isLeftBST = isBstHelper(node.left, lowerLim, node.data);
+		}
+		if (isLeftBST && node.right != null) {
+			isRightBST = isBstHelper(node.right, node.data, upperLim);
+		}
+		return isLeftBST && isRightBST;
+	}
+
 	public static void main(String[] args) {
 		ValidBST b1 = new ValidBST();
 		int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };

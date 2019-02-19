@@ -1,12 +1,13 @@
-package com.pratheeban.graph.dfs;
+package com.pratheeban.graph.bfs;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 /**
  * Creating an undirected graph. Finding path from source to destination in
@@ -17,10 +18,10 @@ import java.util.Queue;
  * 
  *
  */
-public class GraphExample {
+public class HasPath {
 
 	// HashMap will store graph information
-	private HashMap<Integer, Node> nodeLookup = new HashMap<>();
+	private Map<Integer, Node> nodeLookup = new HashMap<>();
 
 	// First requirement is Node class
 	public static class Node {
@@ -66,7 +67,7 @@ public class GraphExample {
 	}
 
 	// DFS traversal
-	public boolean hasPathDFS(int source, int destination) {
+	public boolean hasPathBFS(int source, int destination) {
 		Node s = getNode(source);
 		Node d = getNode(destination);
 		return hasPathBFS(s, d);
@@ -76,24 +77,25 @@ public class GraphExample {
 	private boolean hasPathBFS(Node source, Node destination) {
 		// Reached at source again : found cycle
 		Queue<Node> nextToVisit = new LinkedList<>();
-		HashSet<Integer> visited = new HashSet<>();
+		Set<Integer> visited = new HashSet<>();
 
 		// Add to visited list before going to visit
 		nextToVisit.add(source);
 
 		// Visit adjacent nodes
-		while(!nextToVisit.isEmpty()) {
-			Node node=nextToVisit.remove();
+		while (!nextToVisit.isEmpty()) {
+			Node node = nextToVisit.remove();
 			System.out.print(node.id + " ");
 
 			if (node.id == destination.id) {
 				return true;
 			}
-			if(visited.contains(node.id)) continue;
+			if (visited.contains(node.id))
+				continue;
 			visited.add(node.id);
 			nextToVisit.addAll(node.adjacentNodes);
 		}
-		
+
 		return false;
 	}
 
@@ -131,7 +133,7 @@ public class GraphExample {
 
 	public static void main(String[] args) {
 
-		GraphExample graphExample = new GraphExample();
+		HasPath graphExample = new HasPath();
 		// Creating graph shown in example
 		graphExample.createGraph();
 
@@ -139,7 +141,7 @@ public class GraphExample {
 		System.out.println(graphExample.nodeLookup);
 
 		// Traversing with DFS
-		boolean hasPathDFS = graphExample.hasPathDFS(3, 21);
+		boolean hasPathDFS = graphExample.hasPathBFS(3, 21);
 		System.out.println(hasPathDFS ? "Path Exist" : "Path does not exist.");
 
 	}

@@ -31,9 +31,9 @@ public class MaxDepthBinaryTree {
 		BinaryTreeNode prev = null;
 		while (!s.isEmpty()) {
 			BinaryTreeNode curr = s.peek();
-			if (prev == null || prev.getLeft() == curr || prev.right == curr) {
+			if (prev == null || prev.left == curr || prev.right == curr) {
 				if (curr.getLeft() != null)
-					s.push(curr.getLeft());
+					s.push(curr.left);
 				else if (curr.right != null)
 					s.push(curr.right);
 			} else if (curr.getLeft() == prev) {
@@ -51,15 +51,15 @@ public class MaxDepthBinaryTree {
 	public static int maxDepthLevelOrder(BinaryTreeNode root) {
 		if (root == null)
 			return 0;
-		int maxDepth = 1;
+		int maxDepth = 0;
 		Queue<BinaryTreeNode> q = new LinkedList<BinaryTreeNode>();
 		q.offer(root);
 		q.offer(null);
 		while (!q.isEmpty()) {
 			BinaryTreeNode tmp = q.poll();
 			if (tmp != null) {
-				if (tmp.getLeft() != null)
-					q.offer(tmp.getLeft());
+				if (tmp.left != null)
+					q.offer(tmp.left);
 				if (tmp.right != null)
 					q.offer(tmp.right);
 			} else {

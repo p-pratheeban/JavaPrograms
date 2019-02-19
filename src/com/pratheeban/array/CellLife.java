@@ -1,7 +1,5 @@
 package com.pratheeban.array;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-
 public class CellLife {
 
 	public static int N = 4;

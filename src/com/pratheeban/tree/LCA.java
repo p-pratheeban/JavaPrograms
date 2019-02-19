@@ -69,6 +69,21 @@ public class LCA {
 			set2.add(cur2);
 		}
 	}
+	
+	// Assumes tree has unique values.
+	// we're given a binary SEARCH tree.
+	public static BinaryTreeNode lca(BinaryTreeNode n, int v1, int v2) {
+	    while (n != null) {
+	        if (n.data > v1 && n.data > v2) {
+	            n = n.left;
+	        } else if (n.data < v1 && n.data < v2) {
+	            n = n.right;
+	        } else {
+	            break;
+	        } 
+	    }
+	    return n;
+	}
 
 	public static void main(String[] args) {
 		BinaryTreeNode rootNode = BinaryTreeNode.createBinaryTree();

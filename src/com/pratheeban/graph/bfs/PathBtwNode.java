@@ -67,7 +67,7 @@ public class PathBtwNode {
 		Graph1 g = Graph1.createNewGraph();
 		search(g, g.getNode(new Node("a")), g.getNode(new Node("e")));
 		search(g, g.getNode(new Node("c")), g.getNode(new Node("e")));
-		
+
 		Graph1 g1 = Graph1.createNewGraph();
 		search1(g1, g1.getNode(new Node("a")), g1.getNode(new Node("e")));
 		search1(g1, g1.getNode(new Node("c")), g1.getNode(new Node("e")));

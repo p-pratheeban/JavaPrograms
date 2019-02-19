@@ -24,6 +24,19 @@ public class RotateArray {
 
 	}
 
+	public static void rotateArray(int[] arr, int d) {
+		int n = arr.length;
+
+		// Create new array for rotated elements:
+		int[] rotated = new int[n];
+
+		// Copy segments of shifted elements to rotated array:
+		System.arraycopy(arr, n - d, rotated, 0, d);
+		System.arraycopy(arr, 0, rotated, n - d - 1, n - d);
+		System.out.println(Arrays.toString(rotated));
+
+	}
+
 	public static void swap(int arr[], int i, int j) {
 		int temp = arr[i];
 		arr[i] = arr[j];
@@ -72,6 +85,31 @@ public class RotateArray {
 		}
 	}
 
+	public static boolean isRotate(int[] array1, int[] array2) {
+		if (array1.length != array2.length) {
+			return false;
+		}
+		int key = array1[0];
+		int index = -1;
+		for (int i = 0; i < array2.length; i++) {
+			if (array2[i] == key) {
+				index = i;
+				break;
+			}
+		}
+		if (index == -1) {
+			return false;
+		}
+		int j = -1;
+		for (int i = 0; i < array1.length; i++) {
+			j = (index+i) % array1.length;
+			if (array1[i] != array2[j]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public static void main(String[] args) {
 		int a[] = { 1, 2, 3, 4, 5, 6, 7 };
 		rotate(a, 3);
@@ -79,6 +117,14 @@ public class RotateArray {
 		rotate1(a1, 3);
 		int a2[] = { 1, 2, 3, 4, 5, 6, 7 };
 		rotate2(a2, 3);
+		int a3[] = { 1, 2, 3, 4, 5, 6, 7 };
+		rotateArray(a3, 3);
+
+		int[] array1 = { 1, 2, 3, 4, 5, 6, 7 };
+		int[] array2 = { 4, 5, 6, 8, 1, 2, 3 };
+		System.out.println(isRotate(array1, array2));
+		int[] array3 = { 4, 5, 6, 7, 1, 2, 3 };
+		System.out.println(isRotate(array1, array3));
 
 	}
 }
